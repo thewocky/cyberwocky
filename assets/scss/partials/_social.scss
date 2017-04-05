@@ -1,0 +1,38 @@
+// Social
+.wocky-social {
+	padding: 0;
+	margin: 0;
+	li {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: inline-block;
+		a {
+			display: block;
+			float: left;
+			// margin-right: 10px;
+			margin: 0;
+			padding: 0;
+			&:hover, &:active, &:focus {
+				outline: none;
+				text-decoration: none;
+			}
+			i {
+				font-size: 15px;
+			}
+		}
+	}
+}
+
+
+.wocky-social-icons {
+	> a {
+		margin-right: 10px;
+		color: $brand-secondary;
+		&:hover, &:focus, &:active {
+			text-decoration: none;
+		}
+	}
+}
+
+

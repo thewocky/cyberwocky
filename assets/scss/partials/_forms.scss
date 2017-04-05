@@ -1,0 +1,14 @@
+// Input Text 
+.form-control {
+	box-shadow: none!important;
+	border: 2px solid $brand-darker;
+	background: transparent;
+	font-family: $font-monsterrat;
+	&:hover, 
+	&:focus,
+	&:active {
+		outline: none;
+		box-shadow: none!important;
+		border: 2px solid $brand-primary;
+	}
+}

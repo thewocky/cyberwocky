@@ -1,0 +1,148 @@
+/* =======================================================
+*
+* 	Template Style 
+*	Edit this section
+*
+* ======================================================= */
+
+// Template Base
+body {
+	font-family: $font-opensans;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 26px;
+	color: lighten($brand-darker, 15%);
+	background: $brand-bg-color;
+	height: 100%;
+	position: relative;
+	&.wocky-overflow-x {
+		overflow-x: hidden;
+	}
+}
+a {
+	color: $brand-secondary;
+	@include _animate();
+	&:hover, &:active, &:focus {
+		color: $brand-secondary;
+		outline: none;
+	}
+}
+p {
+	margin-bottom: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: $brand-black;
+	font-family: $font-monsterrat;
+	font-weight: 700;
+}
+::-webkit-selection {
+  color: $brand-body-color;
+  background: $brand-selection-color;
+}
+
+::-moz-selection {
+  color: $brand-body-color;
+  background: $brand-selection-color;
+}
+
+::selection {
+  color: $brand-body-color;
+  background: $brand-selection-color;
+}
+// Template Components
+
+
+
+.js .to-animate,
+.js .animate-object,
+.js .animate-box,
+.js .animate-single {
+	opacity: 0;
+}
+
+
+
+/* Image Alignment */
+
+img {
+	&.wocky-align-right {
+		float:right; 
+		margin:0 0 .5em 1em;
+		@media screen and (max-width: $screen-xs) {
+			width: 100%;
+			margin: 0 0 .5em 0;
+		}
+	}
+	&.wocky-align-left {
+		float:left;
+		margin:0 1em .5em 0;
+		@media screen and (max-width: $screen-xs) {
+			width: 100%;
+			margin: 0 0 .5em 0;
+		}
+	}
+	&.wocky-align-center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+	}
+}
+a > img {
+	&.wocky-align-right {
+		float:right;
+		margin:0 0 .5em 1em;
+		@media screen and (max-width: $screen-xs) {
+			width: 100%;
+			margin: 0 0 .5em 0;
+		}
+	}
+	&.wocky-align-left {
+		float: left;
+		margin: 0 1em .5em 0;
+		@media screen and (max-width: $screen-xs) {
+			width: 100%;
+			margin: 0 0 .5em 0;
+		}
+	}
+	&.wocky-align-center {
+		display: block;
+		margin-left: auto;
+		margin-right: auto
+	}
+}
+
+
+#wocky-page {
+	@include transition(.5s);
+	float: left;
+	background: $brand-white;
+	width: 100%;
+	position: relative;
+	z-index: 89;
+
+	// -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+	// -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+	// -ms-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+	// box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
+	&.wocky-sleep {
+		border-right: 1px solid $brand-gray;
+		-webkit-transform: translateX(-290px);
+		-moz-transform: translateX(-290px);
+		-ms-transform: translateX(-290px);
+		-o-transform: translateX(-290px);
+		transform: translateX(-290px);
+	}
+}
+#wocky-wrap {
+	z-index: 89;
+	position: relative;
+	float: left;
+	width: 100%;
+	background: $brand-white;
+}	
+
+
+
+
+

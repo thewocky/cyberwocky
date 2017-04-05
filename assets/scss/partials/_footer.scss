@@ -1,0 +1,96 @@
+// Footer
+#wocky-footer {
+	padding: 10em 0;
+	background: #323a45;
+	color: #878c93;
+	position: fixed;
+	bottom: 0;
+	font-family: 'Open Sans', Arial, sans-serif;
+	font-weight: 300;
+	.wocky-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 8;
+		background: $brand-overlay-color;
+		opacity: .5;
+	}
+	.wocky-footer-content {
+		position: relative;
+		z-index: 9;
+	}
+	.container  {
+		.row {
+			> div {
+				margin-bottom: 30px;
+			}
+		}
+	}
+	@media screen and (max-width: $screen-md) {
+		position: relative;
+		padding: 5em 0;
+	}
+	@media screen and (max-width: $screen-sm) {
+		padding: 5em 0;
+	}
+
+	
+	p {
+		display: block;
+	}
+	
+	.wocky-copyright small {
+		font-size: 12px;
+	}
+	.wocky-lead {
+		font-size: 13px;
+		font-family: $font-monsterrat;
+		text-transform: uppercase;
+		letter-spacing: 4px;
+		color: $brand-white;
+		margin-bottom: 20px;
+	}
+	a {
+		color: #9a9fa5;
+		&:hover, &:active, &:focus {
+			color: $brand-secondary;
+		}
+	}
+	
+	
+	.wocky-footer-logo {
+		display: block;
+		float: left;
+		width: 100%;
+		margin-bottom: 10px;
+		a {
+			font-family: $font-monsterrat;
+			font-size: 20px;
+			letter-spacing: 2px;
+			color: $brand-gray;
+			border: 2px solid #9a9fa5;
+			float: left;
+			padding: 7px 10px 7px 12px;
+			text-transform: uppercase;
+			&:hover, &:active, &:focus {
+				color: $brand-white;
+				border-color: $brand-white;
+				text-decoration: none;
+			}
+		}
+	}
+
+	ul {
+		padding: 0;
+		margin: 0;
+		li {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 14px 0;
+			line-height: 16px;
+		}
+	}
+
+}

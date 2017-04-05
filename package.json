@@ -1,0 +1,26 @@
+{
+  "name": "autel",
+  "version": "1.0.0",
+  "description": "WP Theme for autelrobotics.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/campdoug/autel.git"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "cssnano": "^3.7.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-cssmin": "^0.11.0",
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-csscomb": "^3.1.0",
+    "grunt-postcss": "^0.8.0",
+    "matchdep": "^1.0.1",
+    "pixrem": "^3.0.1",
+    "time-grunt": "^1.3.0"
+  }
+}

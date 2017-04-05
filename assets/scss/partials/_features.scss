@@ -1,0 +1,633 @@
+
+// Features
+// #wocky-features {
+#wocky-clients {
+	padding: 2em 0;
+	background: $brand-primary;
+	position: relative;
+
+	.wocky-client {
+		margin-bottom: 0px;
+		@media screen and (max-width: $screen-md) {
+			margin-bottom: 30px;
+		}
+		@media screen and (max-width: $screen-sm) {
+			margin-bottom: 30px;
+		}
+		@media screen and (max-width: $screen-xs) {
+			img {
+				max-width: 100%;
+			}
+		}
+	}
+}
+#wocky-pricing {
+	padding: 7em 0;
+	position: relative;
+	border-bottom: 1px solid lighten($brand-gray,15%);
+	.wocky-price {
+		padding-top: 1em;
+		display: block;
+		font-size: 50px;
+		line-height: 50px;
+		font-family: $font-monsterrat;
+		color: $brand-primary;
+		> span {
+			font-size: 16px;
+			line-height: 16px;
+			font-family: $font-opensans;
+			font-weight: 400;
+			color: $brand-gray;
+		}
+	}
+	.pricing-feature {
+		border-top: 10px solid $brand-primary;
+	}
+}
+#wocky-subscribe {
+	padding: 4em 0 3em 0;
+	position: relative;
+	background: $brand-primary;
+	.form-control {
+		color: #fff;
+		border: 2px solid $brand-white;
+
+		&::-webkit-input-placeholder {
+		   color: rgba(255,255,255,.5);
+		}
+
+		&:-moz-placeholder { /* Firefox 18- */
+		   color: rgba(255,255,255,.5);
+		}
+
+		&::-moz-placeholder {  /* Firefox 19+ */
+		   color: rgba(255,255,255,.5);
+		}
+
+		&:-ms-input-placeholder {  
+		   color: rgba(255,255,255,.3);
+		}
+	}
+	.btn {
+		@include transition(.5s);
+		background: darken($brand-primary, 10%);
+		i {
+			font-size: 20px;
+			vertical-align: middle;
+			margin-top: -5px;
+			@include inline-block;
+		}
+	}
+	.form-group {
+		margin-bottom: 0px;
+		@media screen and (max-width: $screen-sm) {
+			margin-bottom: 20px;
+		}
+	}
+}
+#wocky-products,
+#wocky-features {
+	border-bottom: 1px solid lighten($brand-gray,15%);
+}
+#wocky-features,
+#wocky-features-2,
+#wocky-features-3,
+#wocky-products,
+#wocky-faqs  {
+	position: relative;
+	padding: 7em 0;
+	@media screen and (max-width: $screen-sm) {
+		padding: 4em 0;
+	}
+}
+#wocky-features,
+#wocky-feature-3,
+#wocky-faqs {
+	background: lighten($brand-gray, 18%);
+}
+
+#wocky-features-2 {
+	background: $brand-white;
+}
+#wocky-features-3 {
+	.wocky-text-wrap {
+		// margin-top: 7em;
+		margin-bottom: 2em;
+		@media screen and (max-width: $screen-lg) {
+			margin-top: 0em;
+		}
+		@media screen and (max-width: $screen-md) {
+			margin-top: 0em;
+		}
+		.wocky-text {
+			margin-bottom: 20px;
+			@media screen and (max-width: $screen-sm) {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
+	.wocky-icon {
+		font-size: 40px;
+		display: block;
+		margin-bottom: 20px;
+		i {
+			color: $brand-secondary;	
+		}
+		
+	}
+}
+
+#wocky-features-2 {
+	.wocky-text-wrap {
+		margin-top: 5em;
+		@media screen and (max-width: $screen-lg) {
+			margin-top: 0em;
+		}
+		@media screen and (max-width: $screen-md) {
+			margin-top: 0em;
+		}
+		.wocky-text {
+			padding-left: 3em;
+			padding-right: 3em;
+			@media screen and (max-width: $screen-sm) {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
+	.wocky-icon {
+		font-size: 40px;
+		display: block;
+		margin-bottom: 20px;
+		i {
+			color: $brand-secondary;	
+		}
+		
+	}
+	.wocky-image {
+		@media screen and (max-width: $screen-md) {
+			margin-top: 30px;
+		}
+		img {
+			max-width: 100%;
+			@media screen and (max-width: $screen-xs) {
+				max-width: 100%;
+			}
+		}
+	}
+}
+	
+#wocky-faqs {
+	
+	.faq-accordion {
+		position: relative;
+		float: left;
+		width: 100%;
+		padding: 30px;
+		@include border-radius(4px);
+		@include transition(.5s);
+		@media screen and (max-width: $screen-sm ) {
+			padding: 15px;
+		}
+		.faq-accordion-icon-toggle {
+			position: absolute;
+			top: 27px;
+			right: 30px;
+			@include transition(.5s);
+			@media screen and (max-width: $screen-xs ) {
+				top: 17px;
+			}
+			i {
+				font-size: 20px;
+				color: $brand-secondary;
+			}
+		}
+		h3 {
+			font-size: 26px;
+			line-height: 1.5;
+			font-weight: 400;
+			margin: 0;
+			padding: 0;
+			color: $brand-secondary;
+			cursor: pointer;
+			position: relative;
+			display: block;
+			@media screen and (max-width: $screen-sm) {
+				font-size: 20px;
+				line-height: 1.5;
+				font-weight: 400;
+				width: 80%;
+				float: left;
+			}
+		}
+		
+		
+		.faq-body {
+			clear: both;
+			display: none;
+			padding: 30px 0 0px 0;
+			color: $brand-darker;
+			font-size: 16px;
+			line-height: 30px;
+			overflow: hidden;
+		}
+		&.active {
+			// border-bottom: 1px solid transparent;
+			background: $brand-white;
+			-webkit-box-shadow: 0px 2px 1px 0px rgba(0,0,0,.05);
+			-moz-box-shadow: 0px 2px 1px 0px rgba(0,0,0,.05);
+			-ms-box-shadow: 0px 2px 1px 0px rgba(0,0,0,.05);
+			box-shadow: 0px 2px 1px 0px rgba(0,0,0,.05);
+			h3 {
+				color: $brand-secondary;
+			}
+			.faq-accordion-icon-toggle {
+
+				-webkit-transform: rotate(-180deg);
+				-moz-transform: rotate(-180deg);
+				-ms-transform: rotate(-180deg);
+				-o-transform: rotate(-180deg);
+				transform: rotate(-180deg);
+			
+			}
+			
+		}
+	}
+}
+.wocky-feature, .wocky-figure {
+	display: block;
+	color: $brand-darker;
+	float: left;
+	width: 100%;
+	text-align: center;
+	background: $brand-white;
+	@include border-radius(4px);
+	padding: 40px 10px;
+	@include transition(.5s);
+	margin-bottom: 1.5em;
+	&:hover, &:focus, &:active {
+		text-decoration: none;
+		outline: none;
+	}
+	.wocky-feature-icon {
+		width: 80px;
+		height: 80px;
+		display: block;
+		display: table;
+		text-align: center;
+		margin: 0 auto;
+		position: relative;
+		border: 2px solid $brand-secondary;
+		@include border-radius(50%);
+		@include transition(.3s);
+		i {
+			display: table-cell;
+			vertical-align: middle;
+			font-size: 50px;
+			color: $brand-secondary;
+
+		}
+	}
+	.wocky-feature-lead, .wocky-figure-lead {
+		font-size: 12px;
+		letter-spacing: 2px;
+		font-family: $font-monsterrat;
+		text-transform: uppercase;
+		font-weight: 700;
+	}
+	.wocky-feature-text, .wocky-figure-text {
+		color: lighten($brand-darker, 30%);
+		padding-left: 20px;
+		padding-right: 20px;
+		line-height: 24px;
+	}
+	&:hover, &.active {
+		-webkit-box-shadow: 0 0 50px 0 rgba(0,0,0,.15);
+		-moz-box-shadow: 0 0 50px 0 rgba(0,0,0,.15);
+		-ms-box-shadow: 0 0 50px 0 rgba(0,0,0,.15);
+		box-shadow: 0 0 50px 0 rgba(0,0,0,.15);
+
+		margin-top: -10px;
+		@media screen and (max-width: $screen-sm) {
+			margin-top: 0px;
+		}
+		.wocky-feature-icon {
+			background: $brand-secondary;
+			i {
+				color: $brand-white;
+			}
+		}
+	}
+}
+// }
+.wocky-figure {
+	padding-left: 0!important;
+	padding-right: 0!important;
+	padding-top: 0!important;
+	overflow: hidden;
+	position: relative;
+	z-index: 2;
+	figure {
+		margin-bottom: 50px;
+		float: left;
+		width: 100%;
+	}
+	img {
+		@include transition(.3s);
+		z-index: 1;
+
+	}
+	&:hover {
+		img {
+		-webkit-transform: scale(1.1);
+		-moz-transform: scale(1.1);
+		-o-transform: scale(1.1);
+		-ms-transform: scale(1.1);
+		transform: scale(1.1);
+		}
+	}
+}
+
+
+
+#wocky-products {
+	background: lighten($brand-gray, 18%);
+}
+.wocky-uppercase-sm {
+	font-size: 12px;
+	letter-spacing: 2px;
+	font-family: $font-monsterrat;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.wocky-section-heading {
+	margin-bottom: 4em;
+	.wocky-lead {
+		font-size: 45px;
+		line-height: 60px;
+		@media screen and (max-width: $screen-sm) {
+			font-size: 35px;
+			line-height: 50px;
+		}
+	}
+	.emp {
+		font-family: $font-playfair;
+		font-style: italic;
+		font-weight: 400;
+	}
+	.wocky-sub {
+		font-size: 18px;
+		line-height: 30px;
+	}
+}
+
+#wocky-testimony {
+	background: $brand-primary;
+	color: #fff;
+	padding: 8em 0;
+	.wocky-vcard {
+		img {
+			width: 170px;
+			height: 170px;
+			margin-bottom: 20px;
+			@include border-radius(50%);
+			@media screen and (max-width: $screen-md) {
+				width: auto;
+				height: auto;
+			}
+			@media screen and (max-width: $screen-sm) {
+				width: 120px;
+				height: 120px;
+			}
+			@media screen and (max-width: $screen-xs) {
+				width: 100px;
+				height: 100px;
+				margin: 0 auto 20px auto;
+			}
+		}
+	}
+	blockquote {
+		padding: 0;
+		border-left: none;
+		color: $brand-white;
+		@media screen and (max-width: $screen-xs) {
+			text-align: center;
+		}
+		p {
+			font-size: 30px;
+			line-height: 45px;
+
+			@media screen and (max-width: $screen-sm) {
+				font-size: 20px;
+				line-height: 35px;
+			}
+		}
+	}
+	.wocky-author {
+
+		font-family: $font-monsterrat;
+		// color: lighten($brand-darker, 25%);
+		color: $brand-white;
+		@media screen and (max-width: $screen-xs) {
+			text-align: center;
+		}
+		> span {
+			color: $brand-black;
+		}
+	}
+}
+
+.wocky-bg-section {
+	color: $brand-white;
+	background-color: $brand-lighter;
+	background-size: cover;
+	background-position: top center;
+	margin-top: 0px;
+	z-index: 10;
+	position: relative;
+	.wocky-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: $brand-overlay-color;
+		z-index: 11;
+	}
+}
+.wocky-hero-wrap, .wocky-bg-section {
+	// height: 700px;
+	padding: 4em 0;
+	@media screen and (max-width: $screen-sm) {
+		height: inherit;
+		padding: 3em 0;
+	}
+}
+.wocky-bg-section {
+
+	.wocky-hero-wrap {
+		display: table;
+		width: 100%;
+		z-index: 12;
+		position: relative;
+		// padding-top: 5em;
+		// padding-bottom: 3em;
+		// padding: 3em 0;
+		.wocky-hero-intro {
+			display: table-cell;
+			vertical-align: middle;
+			
+			.wocky-lead, .wocky-sub-lead {
+				color: $brand-white;
+				margin: 0;
+				padding: 0;
+				line-height: 1.5;
+			}
+			.wocky-lead {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+.wocky-bg-section, .wocky-hero-wrap{
+	// height: 400px;
+	@media screen and (max-width: $screen-sm) {
+		height: inherit;
+		// padding: 3em 0;
+	}
+}
+.wocky-bg-section  {
+ 	.wocky-overlay {
+ 		background: $brand-overlay-color;
+ 		opacity: .5;
+ 	}
+	.author {
+	 	font-size: 20px;
+	 	margin-bottom: 0;
+	}
+
+}
+#wocky-main,
+#wocky-footer {
+	float: left;
+	width: 100%;
+}
+.cta {
+	.btn {
+		margin-bottom: 0;
+	}
+}
+
+
+
+pre {
+	background: $brand-lighter;
+	border: 1px solid $brand-gray;
+}
+
+
+
+
+
+
+// List - Check style
+
+.wocky-list-check {
+	position: relative;
+	padding: 0;
+	margin: 0;
+	clear: both;
+
+	li {
+		padding-left: 25px!important;
+		position :relative;
+		display: block;
+		margin-bottom: 10px!important;
+		line-height: 20px;
+
+		&:before {
+			@include icomoon;
+			content: "\e116";
+			content: "\e042";
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-size: 18px;
+			color: $brand-gray;
+		}
+
+	}
+}
+
+
+/* Helper Classes */
+
+/* Spacer */
+.wocky-spacer {
+	clear: both;
+	position: relative;
+	border: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+}
+.wocky-spacer-xlg {
+	height: 150px;
+	@media screen and (max-width: $screen-sm) {
+		height: 70px;
+	}
+
+}
+.wocky-spacer-lg {
+	height: 100px;
+	@media screen and (max-width: $screen-sm) {
+		height: 50px;
+	}
+}
+.wocky-spacer-md {
+	height: 80px;
+	@media screen and (max-width: $screen-sm) {
+		height: 30px;
+	}
+}
+.wocky-spacer-sm {
+	height: 50px;
+	@media screen and (max-width: $screen-sm) {
+		height: 20px;
+	}
+}
+.wocky-spacer-xs {
+	height: 30px;
+	@media screen and (max-width: $screen-sm) {
+		height: 20px;
+	}
+}
+.wocky-spacer-xxs {
+	height: 20px;
+}
+.col-xxs-12 {
+	@media screen and (max-width: 480px) {
+		float: none;
+		width: 100%;
+	}
+}
+.wocky-mb30 {
+	margin-bottom: 30px;
+}
+.wocky-row-padded {
+	padding: 50px 0;
+}
+.wocky-colored {
+	color: $brand-primary;
+}
+.image-popup {
+	opacity: 1;
+	&:hover {
+		opacity: .7;
+	}
+}
+
+
+
