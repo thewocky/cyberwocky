@@ -7,11 +7,11 @@
 
 // Template Base
 body {
-	font-family: $font-opensans;
+	font-family: $font-main;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 26px;
-	color: lighten($brand-darker, 15%);
+	color: lighten($clr-grey-dk, 15%);
 	background: $brand-bg-color;
 	height: 100%;
 	position: relative;
@@ -31,11 +31,46 @@ p {
 	margin-bottom: 1.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: $brand-black;
-	font-family: $font-monsterrat;
-	font-weight: 700;
+h1, h2, h3 {
+font-family: $font-header;
 }
+
+h1 {
+	@media #{$sm-min} {
+		font-size: 36px;
+	}
+}
+
+h2 {
+	font-size: 14px;
+	@media #{$xs-min} {
+		font-size: 14px;
+		letter-spacing: 1px;
+	}
+	@media #{$sm-min} {
+		font-size: 16px;
+		letter-spacing: 2px;
+	}
+	@media #{$md-min} {
+		font-size: 18px;
+		letter-spacing: 3px;
+	}
+}
+
+h3 {
+	font-size: 30px;
+	@media #{$sm-min} {
+		font-size: 36px;
+	}
+}
+
+h4 {
+	font-size: 20px;
+	@media #{$sm-min} {
+		font-size: 24px;
+	}
+}
+
 ::-webkit-selection {
   color: $brand-body-color;
   background: $brand-selection-color;
@@ -59,6 +94,104 @@ h1, h2, h3, h4, h5, h6 {
 .js .animate-box,
 .js .animate-single {
 	opacity: 0;
+}
+
+
+.area-fill-min {
+	width: 100%;
+	@media #{$xs-max} {
+		min-height: 100%;
+	}
+	@media #{$sm-min} {
+		height: 100%;
+	}
+	position: relative;
+}
+.area-fill {
+	@include _abs-fill();
+}
+.bg-fill {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.bg-contain {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+
+@media #{$sm-min} {
+	.sm-left {
+	  float:left;
+	}
+	.sm-right {
+	  float:right;
+	}
+}
+@media #{$md-min} {
+	.md-left {
+	  float:left;
+	}
+	.md-right {
+	  float:right;
+	}
+}
+
+@media #{$lg-min} {
+	.lg-left {
+	  float:left;
+	}
+	.lg-right {
+	  float:right;
+	}
+}
+
+/* Golden Ratio */
+
+.golden-third {
+  width:38.227%;
+}
+.golden-square {
+  width:61.773%;
+}
+.offset-golden-third {
+  margin-left:38.227%;
+}
+@media #{$sm-min} {
+	.sm-golden-third {
+	  width:38.227%;
+	}
+	.sm-golden-square {
+	  width:61.773%;
+	}
+	.sm-offset-golden-third {
+	  margin-left:38.227%;
+	}
+}
+@media #{$md-min} {
+	.md-golden-third {
+	  width:38.227%;
+	}
+	.md-golden-square {
+	  width:61.773%;
+	}
+	.md-offset-golden-third {
+	  margin-left:38.227%;
+	}
+}
+
+@media #{$lg-min} {
+	.lg-golden-third {
+	  width:38.227%;
+	}
+	.lg-golden-square {
+	  width:61.773%;
+	}
+	.lg-offset-golden-third {
+	  margin-left:38.227%;
+	}
 }
 
 
@@ -112,11 +245,11 @@ a > img {
 	}
 }
 
-
+/* 
 #wocky-page {
 	@include transition(.5s);
 	float: left;
-	background: $brand-white;
+	background: $clr-off-white;
 	width: 100%;
 	position: relative;
 	z-index: 89;
@@ -126,7 +259,7 @@ a > img {
 	// -ms-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
 	// box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
 	&.wocky-sleep {
-		border-right: 1px solid $brand-gray;
+		border-right: 1px solid $clr-grey-lt;
 		-webkit-transform: translateX(-290px);
 		-moz-transform: translateX(-290px);
 		-ms-transform: translateX(-290px);
@@ -139,10 +272,83 @@ a > img {
 	position: relative;
 	float: left;
 	width: 100%;
-	background: $brand-white;
+	background: $clr-off-white;
 }	
+ */
+.bg-page {
+	position: fixed;
+	top: 0;
+	height: 100vh;
+	.canvas-wrapper {
+		position: fixed;
+	}
+}
+
+.full-ht {
+	height: 100%;
+}
+.page-ht {
+	@media #{$sm-min} {
+		height: 100vh;
+	}
+}
+section {
+	padding-top: 60px;
+	padding-bottom: 40px;
+	@media #{$sm-min} {
+		padding-top: 100px;
+		padding-bottom: 60px;
+	}
+}
+.subsection {
+	padding-top: 30px;
+	padding-bottom: 40px;
+	@media #{$sm-min} {
+		padding-top: 50px;
+		padding-bottom: 60px;
+	}
+}
+@media #{$sm-min} {
+	.sm-full-ht {
+	  height: 100%;
+	}
+	.sm-page-ht {
+	  min-height: 100vh;
+	}
+}
+@media #{$md-min} {
+	.md-full-ht {
+	  height: 100%;
+	}
+	.md-page-ht {
+	  min-height: 100vh;
+	}
+}
+
+@media #{$lg-min} {
+	.lg-full-ht {
+	  height: 100%;
+	}
+	.lg-page-ht {
+	  min-height: 100vh;
+	}
+}
 
 
+.flex {
+	@include _flex-ctr();
+	&.flex-horiz {
+		flex-direction: row;
+	}
+}
 
-
-
+.visuallyhidden {
+	border: 0 !important;
+	clip: rect(0 0 0 0) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+}

@@ -1,143 +1,139 @@
-#wocky-offcanvas {
-	position: fixed;
-	z-index: 90;
-	top: 0;
-	right: 0;
-	@include transition(.5s);
-	-webkit-transform: translateX(290px);
-	-moz-transform: translateX(290px);
-	-ms-transform: translateX(290px);
-	-o-transform: translateX(290px);
-	transform: translateX(290px);
-	bottom: 0;
-	width: 290px;
-	padding: 40px 30px;
-	background: $brand-white;
-	// background: #323a45;
-	color: #878c93;
-	// -webkit-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
-	// -moz-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
-	// -ms-box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
-	// box-shadow: 0 0 9px 0 rgba(0,0,0,.3);
-	.wocky-lead {
-		font-size: 12px;
-		letter-spacing: 2px;
-		color: $brand-gray;
-		text-transform: uppercase;
-		margin-bottom: 20px;	
-	}
-	ul {
-		padding: 0;
-		margin: 30px 0 30px 0;
-		li {
-			padding: 0;
-			margin: 0;
-			list-style: none;
-			a {
-				display: block;
-				padding: 10px 4px;
-				border-bottom: 1px solid #eaeaea;
-				font-size: 18px;
-				color: $brand-darker;
-				&:hover, &:focus, &:active {
-					outline: none;
-					text-decoration: none;
-					color: $brand-secondary;
-				}
-			}
-			&.active {
-				a {
-					color: $brand-secondary!important;
-				}
-			}
+.nav-wrapper {
+	width: 100%;
+	@media #{$sm-min} {
+		position: fixed;
+		height: 80px;
+		top: 0;
+		z-index: 1000;
+		body.scrolled & {
+			background: $clr-off-white;
+			border-bottom: 1px solid rgba(0,0,0,0.15);
 		}
 	}
-	&.wocky-awake {
-		-webkit-transform: translateX(0px);
-		-moz-transform: translateX(0px);
-		-ms-transform: translateX(0px);
-		-o-transform: translateX(0px);
-		transform: translateX(0px);
-	}
-	.wocky-offcanvas-close {
-		position: absolute;
-		right: 20px;
-		top: 40px;
-		text-transform: uppercase;
-		font-size: 15px;
-		letter-spacing: 2px;
-		font-family: $font-monsterrat;
-		z-index: 99;
-		float: left;
-		color: $brand-darker;
-		i {
-			font-size: 20px;
-			margin-top: 3px;
-			float: right;
-			margin-left: 10px;
-			color: red;
-		}
-		&:hover, &:focus, &:active {
-			outline: none;
-			text-decoration: none;
-		}
-	}
-	.wocky-logo {
-		display: block;
-		float: left;
-		width: 100%;
-		text-transform: uppercase;
-		color: $brand-black;
-		letter-spacing: 1px;
-		font-weight: bold;
-		padding: 0;
-		margin: 40px 0 0 0;	
-		a {
-			color: $brand-black;
-			padding: 0;
-			margin: 0;
-		}
+	.nav-tabs-justified > li > a,
+	.nav-tabs.nav-justified > li > a {
+		border-bottom: none !important;
 	}
 }
-
-#wocky-menu {
+.nav-menu {
 	background: transparent; 
-	position: absolute;
 	top: 0;
 	z-index: 999;
-	width: 100%;
-	padding-bottom: 20px;
-	@include transition(.5s);
+	@include _animate(all, 250ms, ease-in-out);
 	@include border-radius(0px);
-	margin-top: 20px;
-	
-	&.sleep {
-	
-		-webkit-transform: translateY(-100%);
-		-moz-transform: translateY(-100%);
-		-ms-transform: translateY(-100%);
-		-o-transform: translateY(-100%);
-		transform: translateY(-100%);
-	}
-	&.wocky-sleep {
-		-webkit-transform: translateX(-290px)!important;
-		-moz-transform: translateX(-290px)!important;
-		-ms-transform: translateX(-290px)!important;
-		-o-transform: translateX(-290px)!important;
-		transform: translateX(-290px)!important;
-	}
-	.scrolled & {
-		background: $brand-white;
-		position: fixed;
+
+	body.scrolled & {
 		margin-top: 0px;
 		top: 0;
-		border-bottom: 1px solid $brand-gray;
+	}
+	nav {
+		a {
+			color: $brand-secondary;
+			&:hover, &:active, &:focus {
+				color: $brand-secondary-dk;
+				background-color: transparent;
+			}
+		}
+	}
 
-		-webkit-transform: translateY(0%);
-		-moz-transform: translateY(0%);
-		-ms-transform: translateY(0%);
-		-o-transform: translateY(0%);
-		transform: translateY(0%);
+	@media #{$sm-min} {
+		display: flex;
+		justify-content: space-between;
+		nav {
+			order: 1;
+			a {
+				padding: 25px;
+				.txt {
+					position: relative;
+					&:after {
+						content: "";
+						top:-25px;
+						border-bottom: 3px solid $brand-secondary-dk;
+						width: 100%;
+						position: absolute;
+						left: 0;
+						transform: scaleX(0);
+						@include _animate();
+					}
+				}
+				&:hover, &:active, &:focus {
+					.txt {
+						position: relative;
+						&:after {
+							transform: scaleX(1);
+						}
+					}
+				}
+			}
+			li.active a {
+				.txt:after {
+					transform: scaleX(1);
+				}
+			}
+		}
+		.menu-logo {
+			order: 0;
+			width: 0px;
+			padding-top: 26px;
+			display: inline-block;
+			margin-left: 20px;
+			margin-right: 20px;
+			transform: translateY(-100px);
+			@include _animate();
+			body.scrolled & {
+				width: 220px;
+				transform: translateY(0);
+			}
+			body:not(.scrolled) & {
+				
+			}
+		}
+	}
+	@media #{$md-min} {
+		.menu-logo {
+			body.scrolled & {
+				width: 260px;
+			}
+		}
+		nav {
+			ul {
+				margin-left: 20px;
+			}
+		}
+	}
+	@media #{$xs-max} {
+		position: absolute;
+		min-height: 58px;
+		width: 100vw;
+		body.scrolled & {
+			transform: translateY(-100%);
+			transition-duration: 0s;
+			position: fixed;
+			top: 0;
+		}
+		body.scrolled.scrolled-down & {
+			@include _animate(all, 250ms, ease-in);
+		}
+		body.scrolled.scrolled-up &,
+		&.nav-awake {
+			background: $clr-off-white;
+			@include _animate(all, 250ms, ease-out);
+			position: fixed;
+			margin-top: 0px;
+			top: 0;
+			border-bottom: 1px solid $clr-grey-lt;
+			transform: translateY(0%);
+		}
+		nav {
+			display: none;
+			padding-bottom: 10px;
+			ul {
+				margin-top: 60px;
+			}
+		}
+		body.hide-mobile-nav & {
+			display: none;
+		}
 	}
 }
 
@@ -149,8 +145,8 @@
 	margin-top: 16px;
 	position: relative;
 	z-index: 10;
-	font-family: $font-monsterrat;
-	color: $brand-white;
+	font-family: $font-header;
+	color: $clr-off-white;
 	i {
 		font-size: 20px;
 		margin-top: 3px;
@@ -160,51 +156,39 @@
 	&:hover, &:focus, &:active {
 		outline: none;
 		text-decoration: none;
-		color: $brand-white;
+		color: $clr-off-white;
 	}
 }
-
-
-
-.navbar-brand {
-	text-align: left;
-	font-weight: bold;
-	@include inline-block;
-	text-transform: uppercase;
-	letter-spacing: 2px;
-	font-size: 20px;
-	float: left!important;
-	font-family: $font-monsterrat;
-	color: $brand-white;
-	z-index: 10;
-	position: relative;
-	// padding-left: 0;
-
-	> span {
-		@include inline-block;
-		float: left;
-		border: 2px solid $brand-white;
-		padding: 7px 10px 7px 12px;
-	}
-	&:hover {
-		color: $brand-white;
-		opacity: .8;
-	}
-	@media screen and (max-width: $screen-xs) {
-		margin: inherit;
-		text-align: left;
-		padding-left: 0;
-		margin-left: 0;
-	}
-}
-.scrolled {
-	.navbar-brand {
-		color: $brand-darker;
-		&:hover {
-			color: $brand-black;
+.menu-logo {
+	@media #{$xs-max} {
+		text-align: center;
+		padding-top: 22px;
+		margin-right: 50px;
+		@include _animate(250);
+		position:fixed;
+		top:0;
+		width: 90%;
+		body:not(.scrolled) #wocky-menu:not(.nav-awake) & {
+			transform: translateY(-60px);
 		}
-		> span {
-			border-color: $brand-darker;
+	}
+}
+
+
+.wocky-brand {
+ 	svg {
+ 		height: 40px;
+ 		width: 160px;
+		@media #{$sm-min} {
+ 			height: 50px;
+	 		width: 220px;
+		}
+		@media #{$md-min} {
+	 		width: 260px;
+		}
+		image {
+			width: 100%;
+			height: auto;
 		}
 	}
 }
@@ -216,9 +200,10 @@
   cursor: pointer;
   text-decoration: none;
   &.active i {
-		&::before, &::after {
-			background: $brand-white;
-		}
+  	background: $brand-black;
+	&::before, &::after {
+		background: $brand-black;
+	}
   }
   &:hover, &:focus, &:active {
   	outline: none;
@@ -227,19 +212,19 @@
   	i {
   		position: relative;
 	  	@include inline-block;
-		width: 25px;
-		height: 3px;
-		color: $brand-white;
+		width: 20px;
+		height: 2px;
+		color: $clr-off-white;
 		font:bold 14px/.4 Helvetica;
 		text-transform: uppercase;
 		text-indent:-55px;
-		background: $brand-white;
+		background: $clr-off-white;
 		transition: all .2s ease-out;
 		&::before, &::after {
 	  	  content:'';
-		  width: 25px;
-		  height: 3px;
-		  background: $brand-white;
+		  width: 20px;
+		  height: 2px;
+		  background: $clr-off-white;
 		  position: absolute;
 		  left:0;
 		  @include transition(.2s);
@@ -247,7 +232,6 @@
  	}
   	.scrolled & {
 		&.active i {
-
 			&::before, &::after {
 				background: $brand-black;
 			}
@@ -265,46 +249,32 @@
 
 
 .wocky-nav-toggle i::before {
-  top: -7px;
+  top: -6px;
 }
 .wocky-nav-toggle i::after {
-  bottom: -7px;
+  bottom: -6px;
 }
 .wocky-nav-toggle:hover i::before {
-  top: -10px;
+  top: -8px;
 }
 .wocky-nav-toggle:hover i::after {
-  bottom: -10px;
+  bottom: -8px;
 }
 .wocky-nav-toggle.active i {
 	background: transparent;
 }
 .wocky-nav-toggle.active i::before {
   top:0;
-  -webkit-transform: rotateZ(45deg);
-     -moz-transform: rotateZ(45deg);
-      -ms-transform: rotateZ(45deg);
-       -o-transform: rotateZ(45deg);
-          transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
 }
 .wocky-nav-toggle.active i::after {
   bottom:0;
-  -webkit-transform: rotateZ(-45deg);
-     -moz-transform: rotateZ(-45deg);
-      -ms-transform: rotateZ(-45deg);
-       -o-transform: rotateZ(-45deg);
-          transform: rotateZ(-45deg);
+  transform: rotateZ(-45deg);
 }
-.wocky-nav-toggle {
-	float: right;
-  position: relative;
+.menu-toggle {
+	position: absolute;
   top: 12px;
-  right: 0px;
-  margin-right: -20px;
-  z-index: 21;
-  padding: 6px 0 0 0;
-  display: block;
-
+  right: 0;
   height: 44px;
   width: 44px;
   border-bottom: none!important;
@@ -316,9 +286,9 @@
 	z-index: 99;
 	width: 100px;
 	margin-top: 12px;
-	color: $brand-white;
+	color: $clr-off-white;
 	margin-left: -70px;
-	font-family: $font-monsterrat;
+	font-family: $font-header;
 	letter-spacing: 2px;
 	font-size: 15px;
 	text-transform: uppercase;
@@ -326,4 +296,7 @@
 		color: $brand-black;
 	}
   }
+	@media #{$sm-min} {
+		display: none;
+	}
 }

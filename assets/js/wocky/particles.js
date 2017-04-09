@@ -9,7 +9,44 @@
 window.particleRenderer = null;
 var animationSpeed = 50,
   midPtMinPx = 5
-  midPtMinRatio = 0.15;
+  midPtMinRatio = 0.15,
+  scrollThrottle = null,
+  scrollBuffer = 50,
+  scrollPos = 0,
+  lastScrollPos = 0,
+  bodyElement = document.getElementsByTagName("BODY")[0];
+
+
+
+var winScroll = function() {
+  scrollThrottle = null;
+  var nextScrollPos = bodyElement.scrollTop;
+  // log('nextScrollPos: ' + nextScrollPos + '; scrollPos: ' + scrollPos + '; lastScrollPos: ' + lastScrollPos);
+  if( nextScrollPos < lastScrollPos - scrollBuffer ) {
+    $( 'body').addClass( 'scrolled-up' );
+    lastScrollPos = nextScrollPos + scrollBuffer;
+  } else if( nextScrollPos > scrollPos ) {
+    // log('scrolling down');
+    if( $( 'body').hasClass( 'scrolled-up' ) ) {
+      $( 'body').addClass( 'scrolled-down' ).removeClass( 'scrolled-up' );
+    }
+    lastScrollPos = nextScrollPos;
+  }
+  scrollPos = nextScrollPos;
+}
+
+var onScrollThrottle = function() {
+  // console.log( 'onScrollThrottle' );
+  if( ! scrollThrottle) {
+    scrollThrottle = setTimeout(function() {
+        winScroll();
+    }, 50);
+  }
+}
+window.onscroll = function() {
+  onScrollThrottle();
+};
+
 /* exported Particles */
 var Particles = (function(window, document) {
   'use strict';
@@ -56,6 +93,9 @@ var Particles = (function(window, document) {
       _.breakpointSettings = [];
       _.originalSettings = null;
       _.storage = [];
+      _.scrollPos = 0;
+      _.scrollThrottle = null;
+      _.bodyElement = document.getElementsByTagName("BODY")[0];
     }
     return Plugin;
   }());
@@ -102,8 +142,6 @@ var Particles = (function(window, document) {
     settings.color = _._hex2rgb(settings.color);
     _.options = _._extend(_.defaults, settings);
     _.originalSettings = JSON.parse(JSON.stringify(_.options));
-    _.options.colorHilite1 = _._hex2rgb('#FFFF00');
-    _.options.colorHilite2 = _._hex2rgb('#FF00FF');
 
     _.setBounds();
     // console.log('_.ctxX: ' + _.ctxX + ', ' + _.ctxY );
@@ -138,6 +176,7 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype._initializeCanvas = function() {
     var _ = this, devicePixelRatio, backingStoreRatio;
+   //  _.ratio = 1;
 
     if(!_.options.selector) {
       console.warn('particles.js: No selector specified! Check https://github.com/marcbruederlin/particles.js#options');
@@ -147,12 +186,14 @@ var Particles = (function(window, document) {
     _.element = document.querySelector(_.options.selector);
     _.context = _.element.getContext('2d');
     
-
+// don't know what this is doing but it's not helping.
     devicePixelRatio = window.devicePixelRatio || 1;
     backingStoreRatio = _.context.webkitBackingStorePixelRatio || _.context.mozBackingStorePixelRatio || _.context.msBackingStorePixelRatio || 
                         _.context.oBackingStorePixelRatio || _.context.backingStorePixelRatio || 1;
 
     _.ratio = devicePixelRatio / backingStoreRatio;
+
+    log( '_.ratio: ' + _.ratio);
 
     _.element.width = window.innerWidth * _.ratio;
     _.element.height = window.innerHeight * _.ratio;
@@ -304,7 +345,7 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype._animate = function() {
     var _ = this;
-    log( '_animate: ' + _.options.speed );
+    // log( '_animate: ' + _.options.speed );
     if( !_.options.speed ){
       if( n < 3 ){
         n ++;
@@ -333,7 +374,7 @@ var Particles = (function(window, document) {
       var particle = _.storage[i];
       particle._draw();
     }
-    
+  // log( 'scrollTop: ' + _.bodyElement.scrollTop );
     _._update();
   };
 
@@ -397,7 +438,7 @@ var Particles = (function(window, document) {
           // console.log( 'calculateDistance' );
           // console.log( svgHitPoint.targPt );
           // console.log( segmentPt1 );
-          var connectDistance = _._connectParticles(particle, svgHitPoint.targPt, true);
+          var connectDistance = _._connectParticles(particle, svgHitPoint.targPt, true, false);
           _.options.x = svgHitPoint.targPt.x;
           _.options.y = svgHitPoint.targPt.y;
           
@@ -413,16 +454,19 @@ var Particles = (function(window, document) {
               connectionPt1 = {
                 x: svgHitPoint.targPt.x + Math.cos(connectAngle) * midPtDist,
                 y: svgHitPoint.targPt.y + Math.sin(connectAngle) * midPtDist
-              },
-              clr = 'rgba(255,255,255, ' + connectDistance.opacity + ')';
+              };
+              // cancel b/c scrolling
+              // clr = 'rgba(111,126,168, ' + connectDistance.opacity + ')';
               // offset segment points from path by just a bit (1px * angle)
               segmentPt1.x += Math.cos(connectAngle);
               segmentPt1.y += Math.sin(connectAngle);
               segmentPt2.x += Math.cos(connectAngle);
               segmentPt2.y += Math.sin(connectAngle);
-            var segmentConnect1 = _._connectParticles(connectionPt1, segmentPt1, true, clr ),
-                segmentConnect2 = _._connectParticles(connectionPt1, segmentPt2, true, clr );
-            
+/*
+// scrolling screws this up
+            var segmentConnect1 = _._connectParticles(connectionPt1, segmentPt1, true, clr, scrollPos ),
+                segmentConnect2 = _._connectParticles(connectionPt1, segmentPt2, true, clr, scrollPos );
+*/            
           }
       }
         
@@ -434,7 +478,7 @@ var Particles = (function(window, document) {
           }
           */
 
-            _._connectParticles(particle, particle2);
+            _._connectParticles(particle, particle2, false, false);
         }
       }
     }
@@ -447,6 +491,7 @@ var Particles = (function(window, document) {
    * @param {Particle} p1
    * @param {Particle} p2
    */
+  // Plugin.prototype._connectParticles = function(p1, p2, distOverride, clr, addScroll) {
   Plugin.prototype._connectParticles = function(p1, p2, distOverride, clr) {
     var _ = this;
 
@@ -469,11 +514,9 @@ var Particles = (function(window, document) {
         }
         _.context.moveTo(p1.x, p1.y);
         _.context.lineTo(p2.x, p2.y);
+//         _.context.lineTo(p2.x, p2.y - addScroll);
         _.context.stroke();
         _.context.closePath();
-
-        // _.context.shadowBlur = 2;
-        // _.context.shadowColor = "white";
 
         var lineObj = {
           // distance:( minDistance - n ) / minDistance,
@@ -634,6 +677,7 @@ var Particles = (function(window, document) {
         clearTimeout(callback); //fall back
       };
   })();
+
 
   return new Plugin();
 })(window, document);

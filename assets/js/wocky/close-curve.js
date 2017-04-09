@@ -21,6 +21,7 @@ var outer = $$("#outer");
 var path = $$("#logo-outer-path");
 var edge = $$("#edge");
 var dist = $$("#dist");
+var scrollPos = 0;
 
 var xMultiplier = 1;
 var threshold = 15; //px
@@ -33,20 +34,6 @@ var offsetX,
     offsetY,
     ratioX,
     ratioY;
-/*
-rects.addEventListener("change", toggleBounds);
-range.addEventListener("input", updateLogoContour);
-range.addEventListener("change", updateLogoContour);
-*/
-/*
-document.body.addEventListener("mousemove", function (event) {
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
-  var mouseHit = mouseTest(mouse);
-  console.log( 'mouseHit: ' + mouseHit );
-  // console.log( mouseHit );
-});
-*/
 
 //
 // UPDATE
@@ -140,43 +127,6 @@ function getContour(bezier, tolerance) {
     addPoint(x1234, y1234, x234, y234, x34, y34, x4, y4);
   }
 }
-/*
-*/
-//
-// MOUSE HIT TEST
-// ===========================================================================
-function mouseTest(point) {
-
-  var total = points.length - 1;
-
-  var res = {
-    edge: 0,
-    point: {},
-    dist: Infinity,
-    distSq: Infinity
-  };
-
-
-  for (var i = 0; i < total; i++) {
-
-    // var p1 = points[i];
-    var p2 = points[i + 1] || points[0];
-
-    var p1 = {
-      x: points[i].x * targetSizeRatio + targetCoordsLeft,
-      y: points[i].y * targetSizeRatio + targetCoordsTop
-    };
-    p2 = {
-      x: p2.x * targetSizeRatio + targetCoordsLeft,
-      y: p2.y * targetSizeRatio + targetCoordsTop
-    };
-
-    pointDist(point, p1, p2, i, res);
-  }
-
-}
-/*
-*/
 
 //
 // HIT TEST
@@ -194,12 +144,7 @@ function findClosestSegment(point) {
 
   for (var i = 0; i < total; i++) {
 
-    // var p1 = points[i];
     var p2 = points[i + 1] || points[0];
-/*
-    var targetCoordsLeft = targetCoordsLeft - targetPadding,
-     targetCoordsTop = targetCoordsTop - targetPadding;
-*/
     var p1 = {
       x: points[i].x,
       y: points[i].y
@@ -208,10 +153,6 @@ function findClosestSegment(point) {
       x: p2.x,
       y: p2.y
     };
-    // console.log( 'findClosestSegment: point' );
-    // console.log( p1 );
-    // console.log( p2 );
-    // console.log( targetSizeRatio + targetCoordsLeft + '; ' + targetCoordsTop);
 
     pointDist(point, p1, p2, i, res);
   }
@@ -222,18 +163,6 @@ function findClosestSegment(point) {
     x: point.x,
     y: point.y
   };
-/*
-  var sourcePt = {
-    x: (point.x ) / targetSizeRatio,
-    y: (point.y ) / targetSizeRatio
-  };
-*/  
-/*
-  var targPt = {
-    x: (res.point.x - targetCoordsLeft ) / targetSizeRatio,
-    y: (res.point.y - targetCoordsTop ) / targetSizeRatio
-  };
-*/  
   var targPt = {
     x: res.point.x,
     y: res.point.y
@@ -243,82 +172,20 @@ function findClosestSegment(point) {
       dy = targPt.y - sourcePt.y,  
       distToSegment = Math.sqrt(dx * dx + dy * dy);
   if( !e1 || distToSegment > 800 ) {
-    // console.log( '!e1 : ' + e1 + '; ' + distToSegment);
-
     return false;
-  } else {
-    // console.log( 'render ' + targPt.x + ', ' + targPt.y );
-   // return targPt;
-
   }
-/*
-  var x1 = point.x - targetCoordsLeft ) / targetSizeRatio,
-      y1 = (point.y - targetCoordsTop ) / targetSizeRatio,
-      x2 = (res.point.x - targetCoordsLeft ) / targetSizeRatio,
-      y2 = (res.point.y - targetCoordsTop ) / targetSizeRatio;
-*/
-
-  // describes line segment on target path
-/*
-  TweenLite.set(edge, {
-    stroke: res.dist < threshold ? "green" : "#ec0000",
-    attr: {
-      x1: e1.x,
-      y1: e1.y,
-      x2: e2.x,
-      y2: e2.y
-    } });
-
-  // describes line from point to segment
-  TweenLite.set(dist, { attr: {
-      x1: sourcePt.x,
-      y1: sourcePt.y,
-      x2: targPt.x,
-      y2: targPt.y
-    } });
-*/
-// console.log( 'offset x: ' + bgParticleSettings.offset.x + ', y: ' + bgParticleSettings.offset.y );
   
   return {
-/*    
-    targSegment: {
-      x1: e1.x * targetSizeRatio + targetCoordsLeft,
-      y1: e1.y * targetSizeRatio + targetCoordsTop,
-      x2: e2.x * targetSizeRatio + targetCoordsLeft,
-      y2: e2.y * targetSizeRatio + targetCoordsTop
-    },
-*/
     targSegment: {
       x1: e1.x,
       y1: e1.y,
       x2: e2.x,
       y2: e2.y
     },
-/*    
-
-    targSegment: {
-      x1: ( e1.x - targetCoordsLeft ) / targetSizeRatio,
-      y1: ( e1.y - targetCoordsTop ) / targetSizeRatio,
-      x2: ( e2.x - targetCoordsLeft ) / targetSizeRatio,
-      y2: ( e2.y - targetCoordsTop ) / targetSizeRatio
-    },
-
-
-
-    targSegment: {
-      x1: e1.x,
-      y1: e1.y,
-      x2: e2.x,
-      y2: e2.y
-    },
-*/    
-
-
     targPt: targPt
   };
 
 
-  // console.log( 'dist: ' + dist);
 }
 
 //
@@ -329,9 +196,9 @@ function pointDist(point, p1, p2, edge, res) {
   var x = point.x;
   var y = point.y;
   var x1 = p1.x;
-  var y1 = p1.y;
+  var y1 = p1.y - scrollPos;
   var x2 = p2.x;
-  var y2 = p2.y;
+  var y2 = p2.y - scrollPos;
 
   var A = x - x1;
   var B = y - y1;
@@ -412,6 +279,6 @@ function toggleBounds(event) {
 // RENDER
 // ===========================================================================
 function render() {
-   console.log( 'render' );
+//    console.log( 'render' );
 //   console.log( Particles.storage );
 }

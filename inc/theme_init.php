@@ -126,5 +126,51 @@ function my_remove_recent_comments_style()
     }
 }
 
+add_action( 'init', 'wocky_cpt_init' );
+/**
+ * Register custom post types.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_post_type
+ */
 
+function wocky_cpt_init() {
+    $project_labels = array(
+        'name'               => _x( 'Projects', 'Projects', 'wocky' ),
+        'singular_name'      => _x( 'Project', 'Project', 'wocky' ),
+        'menu_name'          => _x( 'Projects', 'admin menu', 'wocky' ),
+        'name_admin_bar'     => _x( 'Projects', 'add new on admin bar', 'wocky' ),
+        'add_new'            => _x( 'Add New', 'project-item', 'wocky' ),
+        'add_new_item'       => __( 'Add New Project', 'wocky' ),
+        'new_item'           => __( 'New Project', 'wocky' ),
+        'edit_item'          => __( 'Edit Project', 'wocky' ),
+        'view_item'          => __( 'View Project', 'wocky' ),
+        'all_items'          => __( 'All Projects', 'wocky' ),
+        'search_items'       => __( 'Search Projects', 'wocky' ),
+        'parent_item_colon'  => __( 'Parent Projects:', 'wocky' ),
+        'not_found'          => __( 'No Projects found.', 'wocky' ),
+        'not_found_in_trash' => __( 'No Projects found in Trash.', 'wocky' )
+    );
+
+    $project_args = array(
+        'labels'             => $project_labels,
+        'description'        => __( 'Description.', 'wocky' ),
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'project' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt' ),
+        'taxonomies'         => array( 'category', 'post_tag' )
+    );
+
+    register_post_type( 'project', $project_args );
+    register_taxonomy_for_object_type( 'category', 'project' );
+    register_taxonomy_for_object_type( 'post_tag', 'project' );
+
+}
 

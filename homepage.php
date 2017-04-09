@@ -4,155 +4,118 @@
 get_header();
 
 ?>
-
 	<main role="main" aria-label="Content">
-		<section id="about" data-section="about" class="full-ht sec-about flex flex-vert">
-			<div class="owl-carousel">
-				<div class="flex-child-fluid">What is a Cyberwocky, and why do you need one?</div>
-				<div class="flex flex-horiz flex-child-ctr">
-					<div class="flex-child-fluid"><h3>Creator</h3></div>
-					<div class="flex-child-ctr"><img class="" src="something.svg" /></div>
-					<div class="flex-child-fluid"><h3>Coder</h3></div>
-				</div>
-				<div class="flex-child-fluid">Cyberwocky is the alias of Jeff Battema, a web developer specializing in increasing brand awareness, creating engaging websites, and Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		<section id="about" data-section="about" class="page-ht sec-about">
+			<div class="spacer s0 trigger-20" id="trigger-about"></div>
+
+			<div class="area-fill area-bg">
+				<div class="sm-golden-third sm-left sm-full-ht sm-off-white animate-bg-clr"></div>
 			</div>
-		</section>
-		<section id="work" data-section="work" class="full-ht sec-work">
 
-	    	<div class="row animate-box">
+			<div class="area-fill-min flex content">
+				<div class="flex-child area-1">
+					<div class="sm-offset-golden-third sm-left"><h4>What is a Cyberwocky, and why do you need one?</h4></div>
+				</div>
+				<div class="flex-child tagline-container">
+					<div class="sm-golden-third sm-left area-2"><h3 class="text-right">Creator</h3></div>
+					<div class="sm-left area-3"><img class="offset-badge" src="<?= get_template_directory_uri() ?>/assets/img/yin-yang.svg" /><h3>Coder</h3></div>
+				</div>
+				<div class="flex flex-horiz flex-child area-4">
+					<div class="sm-offset-golden-third sm-left"><p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance in form as well as function in my work. I find both halves of the brain work better when they work together.</p><p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside da&nbsp;Vinci and Ben Franklin.</p></div>
+				</div>
+			</div>
+
+		</section>
+		<section id="work" data-section="work" class="sec-work">
+<?php
+$work_args = array(
+	'post_type'   => 'project',
+	'posts_per_page' => -1
+);
+$work_query = new WP_Query( $work_args );
+if ( $work_query->have_posts() ) :
+?>
+	    	<div class="animate-box">
 				<div class="owl-carousel">
+<?php
+	while ( $work_query->have_posts() ) :
 
-					<div class="item">
-						<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
-			    			<figure class="fh5co-vcard"><img src="images/user.jpg" alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
+		$work_query->the_post();
+		global $post;
+		setup_postdata( $post );
+		
+?>
+					<div class="item row">
+						<div class="col-sm-6 item-thumb">
+			    			<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'project-thumb' ) ); ?>
 			    		</div>
-			    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
-			    			<blockquote>
-			    				<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-			    			</blockquote>
-			    			<p class="fh5co-author fh5co-uppercase-sm"><span>Gustav Barrow</span>, XYZ Inc.</p>
+			    		<div class="col-sm-6 flex item-content">
+			    			<h3><?php the_title();?></h3>
+			    			<?php the_content();?>
 			    		</div>
 			    	</div>
 
-			    	<div class="item">
-						<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
-			    			<figure class="fh5co-vcard"><img src="images/user_2.jpg" alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
-			    		</div>
-			    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
-			    			<blockquote>
-			    				<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-			    			</blockquote>
-			    			<p class="fh5co-author fh5co-uppercase-sm"><span>Gustav Barrow</span>, XYZ Inc.</p>
-			    		</div>
-			    	</div>
+<?php
 
-			    	<div class="item">
-						<div class="col-md-3 col-sm-3 col-xs-4 col-xxs-12">
-			    			<figure class="fh5co-vcard"><img src="images/user_3.jpg" alt="Free HTML5 Template by FREEHTML5.co" class="img-responsive"></figure>
-			    		</div>
-			    		<div class="col-md-9 col-sm-9 col-xs-8 col-xxs-12">
-			    			<blockquote>
-			    				<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-			    			</blockquote>
-			    			<p class="fh5co-author fh5co-uppercase-sm"><span>Gustav Barrow</span>, XYZ Inc.</p>
-			    		</div>
-			    	</div>
 
-			    </div>
-		    </div>
-
-		</section>
-		<section id="clients" data-section="clients" class="sec-clients">
-			<div class="container">
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">Disney</div>
+endwhile;
+?>
 				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">Microsoft</div>
-				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">Touchstone</div>
-				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">ABC</div>
-				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">Autel</div>
-				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">Swedish</div>
-				</div>
-				<div class="row animate-box">
-					<div class="col-md-3 col-sm-4 col-xs-6">NASA</div>
+			</div>
+<?php
+endif;
+?>
+			<div id="clients" data-section="clients" class="subsection sec-clients">
+				<div class="container">
+					<div class="client-leadin">Cyberwocky is honored to have worked with extraordinarily talented teams representing some of the world's leading brands.</div>
+					<div class="row client-logos">
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/disney-logo.svg" alt="Disney" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/microsoft-logo.svg" alt="Microsoft" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/opi-logo.svg" alt="OPI" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/autel-logo.svg" alt="Autel Robotics" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/swedish.png" alt="Swedish Medical Center" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/abc_logo.png" alt="ABC" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/nasa-logo.svg" alt="NASA" /></div></div>
+						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/touchstone-logo.svg" alt="Touchstone Pictures" /></div></div>
+					</div>
 				</div>
 			</div>
 		</section>
 		<section id="services" data-section="services" class="sec-services">
 			<div class="container">
-				<div class="faq-accordion to-animate">
-					<span class="faq-accordion-icon-toggle"><i class="icon-arrow-down"></i></span>
-					<h3>Web Design</h3>
-					<div class="faq-body">
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					</div>
-				</div>
-				<div class="faq-accordion to-animate">
-					<span class="faq-accordion-icon-toggle"><i class="icon-arrow-down"></i></span>
-					<h3>Web Development</h3>
-					<div class="faq-body">
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					</div>
-				</div>
-				<div class="faq-accordion to-animate">
-					<span class="faq-accordion-icon-toggle"><i class="icon-arrow-down"></i></span>
-					<h3>Marketing</h3>
-					<div class="faq-body">
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					</div>
-				</div>
-				<div class="faq-accordion to-animate">
-					<span class="faq-accordion-icon-toggle"><i class="icon-arrow-down"></i></span>
-					<h3>Branding</h3>
-					<div class="faq-body">
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					</div>
-				</div>
-				<div class="faq-accordion to-animate">
-					<span class="faq-accordion-icon-toggle"><i class="icon-arrow-down"></i></span>
-					<h3>Interface Design</h3>
-					<div class="faq-body">
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3">
+					<p><strong>My mission is to help my clients succeed.</strong> Web design is my game, but a business is about so much more. Whether you're a fledgling startup looking to establish a brand or a multinational behemoth launching a new product, I can support your business needs across the board.</p>
+					<ul>
+						<li>Front-end Web Development</li>
+						<li>Javascript Development</li>
+						<li>WordPress Theming</li>
+						<li>Shopify Theming</li>
+						<li>Web App Development</li>
+						<li>Interface Design</li>
+						<li>Information Architecture</li>
+						<li>Branding</li>
+						<li>Social Media Marketing</li>
+						<li>Content Marketing</li>
+						<li>Digital Illustration</li>
+						<li>Animation</li>
+						<li>Video Production</li>
 					</div>
 				</div>
 			</div>
 		</section>
-		<section id="contact" data-section="contact" class="full-ht sec-contact">
-					<div class="container">
-						<div class="row animate-box">
-							<form action="#" method="post">
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="First Name">
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Last Name">
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Email">
-									</div>
-								</div>
-								<div class="col-md-3 col-sm-3">
-									<div class="form-group">
-										<input type="submit" class="btn btn-primary" value="Subscribe">
-									</div>
-								</div>
-							</form>
-						</div>
+		<section id="contact" data-section="contact" class="sec-contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3">
+					<p>Drop me a line! If you have a project you'd like to discuss, please provide as many details as possible.</p>
+ 				<?php
+ 				// gravity_form( $id_or_title, $display_title = true, $display_description = true, $display_inactive = false, $field_values = null, $ajax = false, $tabindex, $echo = true );
+ 				gravity_form( 1, true, true, false, null, true );
+ 				?>	
 					</div>
+				</div>
+			</div>
 
 		</section>
 	</main>

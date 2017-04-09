@@ -46,10 +46,10 @@
 	}
 	.wocky-lead {
 		font-size: 13px;
-		font-family: $font-monsterrat;
+		font-family: $font-header;
 		text-transform: uppercase;
 		letter-spacing: 4px;
-		color: $brand-white;
+		color: $clr-off-white;
 		margin-bottom: 20px;
 	}
 	a {
@@ -66,17 +66,17 @@
 		width: 100%;
 		margin-bottom: 10px;
 		a {
-			font-family: $font-monsterrat;
+			font-family: $font-header;
 			font-size: 20px;
 			letter-spacing: 2px;
-			color: $brand-gray;
+			color: $clr-grey-lt;
 			border: 2px solid #9a9fa5;
 			float: left;
 			padding: 7px 10px 7px 12px;
 			text-transform: uppercase;
 			&:hover, &:active, &:focus {
-				color: $brand-white;
-				border-color: $brand-white;
+				color: $clr-off-white;
+				border-color: $clr-off-white;
 				text-decoration: none;
 			}
 		}

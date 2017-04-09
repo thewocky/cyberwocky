@@ -1,89 +1,5 @@
-$font-serif: 'Droid Serif', times, serif;
-$font-sans-serif: 'Raleway', sans-serif;
-// $font-serif: 'Lora', times, serif;
-// $font-sans-serif: 'Roboto', sans-serif;
-
-// Overrides
-$grid-gutter-width: 40px !default; 
-$border-radius-base:  4px !default;
-$padding-base-vertical: 14px !default;
-
-$brand-black: rgb(19,23,34);
-$glow-blue: rgb(207,219,255);
-
-$brand-green-mid: rgb(85,134,80);   // secondary
-$brand-green-lt: rgb(115,172,109);
-$brand-blue-dk: rgb(61,90,128);
-$brand-blue-mid: rgb(128,155,185);
-$brand-blue-lt: rgb(179,198,220);
-$clr-off-white: rgb(245,247,250);
-$clr-mid-white: rgb(230,235,240);
-
-$clr-grey-dker: rgb(31,32,33);
-$clr-grey-dk: rgb(64,65,66);
-$clr-grey-mid: rgb(110,112,115);
-$clr-grey-lt: rgb(186,190,194);
-$brand-overlay-color: rgb(59,61,64);
-
-$input-border-focus:  $brand-primary !default;
-$form-group-margin-bottom:       30px !default;
-$navbar-height:                  60px !default;
-
-
-
-// Overrides
-$grid-gutter-width: 40px !default; 
-$border-radius-base:  4px !default;
-$padding-base-vertical: 14px !default;
-
-$brand-primary: #4fd2c2 !default;
-$brand-secondary: #4fd2c2 !default;
-$brand-white: #fff;
-$brand-darker: #444;
-$brand-gray: #ccc;
-$brand-lighter: #e9e9e9;
-$brand-body-color: #818892;
-$brand-selection-color: #f9f6f0;
-$brand-overlay-color: #3b3d40;
-$brand-bg-color: $brand-white;
-
-$input-border-focus:  $brand-primary !default;
-$form-group-margin-bottom:       30px !default;
-
-$navbar-height:                  60px !default;
-
-
-.bg-off-white {
-  background-color: $clr-off-white;
-}
-section.bg-off-white {
-  background-color: $clr-off-white;
-  border-top: 1px solid $clr-mid-white;
-  border-bottom: 1px solid $clr-mid-white;
-}
-.bg-white {
-  background-color: white;
-}
-.bg-off-white,
-.bg-white {
-  color: $clr-grey-dk;
-  h1, h2, h3, h4, h5, h6 {
-    color: $clr-grey-dker;
-  }
-}
-.bg-brand-dk {
-  background-color: $brand-black;
-  color: white;
-}
-
-
-// bootstrap breakpoints
-// separate -xxs- into separate mobile breakpoint
-// -xxs- : - 479
-// -xs- : 480 - 767
-// -sm- : 768 - 991
-// -md- : 992 - 1199
-// -lg- : 1200 +
+$font-header: 'Michroma', sans-serif;;
+$font-main: 'Raleway', "Open Sans", Arial , sans-serif;
 
 
 $xxs-min: "only screen and (min-width:none)";
@@ -109,6 +25,100 @@ $md-only: $md-lg;
 $lg-min: "only screen and (min-width:1200px)";
 $lg-max: "only screen and (max-width:none)";
 $lg-only: $lg-min;
+
+
+
+// Overrides
+$grid-gutter-width: 40px !default; 
+$border-radius-base:  4px !default;
+$padding-base-vertical: 14px !default;
+
+$brand-black: rgb(19,23,34);
+$glow-blue: rgb(207,219,255);
+
+$clr-off-white: rgb(245,247,250);
+$clr-mid-white: rgb(230,235,240);
+
+$clr-grey-dk: rgb(64,65,66);
+$clr-grey-mid: rgb(110,112,115);
+$clr-grey-lt: rgb(186,190,194);
+$brand-overlay-color: rgb(59,61,64);
+
+$input-border-focus:  $brand-primary !default;
+$form-group-margin-bottom:       30px !default;
+$navbar-height:                  60px !default;
+
+
+
+// Overrides
+$grid-gutter-width: 40px !default; 
+$border-radius-base:  4px !default;
+$padding-base-vertical: 14px !default;
+
+$brand-primary: #4fd2c2 !default;
+$brand-secondary: #cc8829 !default;
+$brand-secondary-dk: #b37012;
+$brand-body-color: #818892;
+$brand-selection-color: #f9f6f0;
+$brand-overlay-color: #3b3d40;
+$brand-bg-color: $clr-off-white;
+
+$input-border-focus:  $brand-primary !default;
+$form-group-margin-bottom:       30px !default;
+
+$navbar-height:                  60px !default;
+
+
+.bg-off-white {
+  background-color: $clr-off-white;
+}
+@media #{$sm-min} {
+  .sm-off-white {
+    background-color: $clr-off-white;
+  }
+}
+@media #{$md-min} {
+  .md-off-white {
+    background-color: $clr-off-white;
+  }
+}
+
+@media #{$lg-min} {
+  .lg-off-white {
+    background-color: $clr-off-white;
+  }
+}
+
+section.bg-off-white {
+  background-color: $clr-off-white;
+  border-top: 1px solid $clr-mid-white;
+  border-bottom: 1px solid $clr-mid-white;
+}
+.bg-white {
+  background-color: white;
+}
+.bg-off-white,
+.bg-white {
+  color: $clr-grey-dk;
+  h1, h2, h3, h4, h5, h6 {
+    color: $brand-black;
+  }
+}
+.bg-brand-dk {
+  background-color: $brand-black;
+  color: white;
+}
+
+
+// bootstrap breakpoints
+// separate -xxs- into separate mobile breakpoint
+// -xxs- : - 479
+// -xs- : 480 - 767
+// -sm- : 768 - 991
+// -md- : 992 - 1199
+// -lg- : 1200 +
+
+
 
 
 @media (max-width: 479px) {

@@ -1,89 +1,156 @@
 // Owl Carousel
-.owl-carousel .owl-controls,
-.owl-carousel-posts .owl-controls, {
-	margin-top: 0;
-}
-.owl-carousel .owl-controls .owl-nav {
-	@media screen and (max-width: $screen-sm) {
-		display: none;
-	}
-}
-.owl-carousel .owl-controls .owl-nav .owl-next,
-.owl-carousel .owl-controls .owl-nav .owl-prev{
-	margin-top: -19px;
-	top: 50%;
-	z-index: 9999;
-	position: absolute;
 
-	opacity: .5;
-	@include transition(.3s);
-	&:hover {
-		opacity: 1;
+/*# sourceMappingURL=style.css.map */
+
+.owl-carousel {
+	overflow: hidden;
+	.owl-controls {
+		margin-top: 0;
+		.owl-nav {
+	        @media #{$xs-max} {
+				// display: none;
+			}
+			.owl-next,
+			.owl-prev{
+				margin-top: -19px;
+				top: 50%;
+				z-index: 9999;
+				position: absolute;
+
+				opacity: .5;
+				@include transition(.3s);
+				&:hover {
+					opacity: 1;
+				}
+			}
+
+			.owl-next {
+				right: 0;
+				// margin-right: -40px;	
+				&:hover {
+					// margin-right: -50px;
+				}
+		        @media #{$sm-max} {
+					margin-right: 0px;	
+				}
+				
+			}
+			.owl-prev {
+				left: 0;
+				// margin-left: -40px;
+				&:hover {
+					// margin-left: -50px;
+				}
+		        @media #{$sm-max} {
+					// margin-left: 0px;	
+				}
+				
+			}
+		}
 	}
 }
 
-.owl-carousel .owl-controls .owl-nav .owl-next {
-	right: 0;
-	margin-right: -40px;	
-	&:hover {
-		margin-right: -50px;
+
+.line-arrow {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 12px; /*set the size for arrow*/
+    bottom: 0;
+	border-bottom: none;
+    @media #{$sm-min} {
+	    bottom: auto;
+	    top: 50%;
+    	width: 2em;
+		height: 2em;
+	    margin-top: -1em;
+    }
+	&.left {
+	    border-top: 2px solid $clr-grey-lt;
+		border-left: 2px solid $clr-grey-lt;
+		border-right: none;
+	    transform: rotate(-54deg) skew(-20deg);
+	    left: 10px;
 	}
-	@media screen and (max-width: $screen-md) {
-		margin-right: 0px;	
+
+	&.right {
+	  	border-top: 2px solid $clr-grey-lt;
+		border-right: 2px solid $clr-grey-lt;
+		border-left: none;
+	    transform: rotate(54deg) skew(20deg);
+	    right: 10px;
 	}
-	
+
+	&:active,
+	&.active {
+	    border-color: $clr-grey-dk;
+	}
 }
-.owl-carousel .owl-controls .owl-nav .owl-prev {
-	left: 0;
-	margin-left: -40px;
-	&:hover {
-		margin-left: -50px;
+.square {
+	top: auto;
+	bottom: 10px;
+	&.left {
+		transform: rotate(-45deg);
 	}
-	@media screen and (max-width: $screen-md) {
-		margin-left: 0px;	
+
+	&.right {
+		transform: rotate(45deg);
 	}
-	
 }
 
-.owl-theme .owl-controls .owl-nav {
-	@media screen and (max-width: $screen-sm) {
-		display: none;
+
+
+
+.owl-theme {
+	.owl-controls .owl-nav {
+		@media screen and (max-width: $screen-sm) {
+			// display: none;
+		}
 	}
-}
-.owl-theme .owl-controls .owl-nav [class*="owl-"] {
+	.owl-controls .owl-nav [class*="owl-"] {
 		background: none!important;
-	i {
-		font-size: 30px;
 		&:hover, &:focus {
 			background: none!important;
 		}
 	}
-	&:hover, &:focus {
-		background: none!important;
+	.owl-dots {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+		.owl-dot {
+			padding-bottom: 16px;
+			border-bottom: 1px solid $clr-grey-lt;
+			span {
+				width:10px;
+			  	height:10px;
+				background: $clr-grey-lt;
+				@include transition(.2s);
+				border: 1px solid $clr-off-white;
+				&:hover {
+					background-color: $clr-grey-mid;
+				}
+			}
+		}
+		.owl-dot.active span {
+			background-color: $clr-grey-mid;
+			border-color: $clr-grey-mid;
+		}
+	}
+
+	.owl-carousel-fullwidth.owl-dots {
+		bottom: 0;	
+		margin-bottom: 2.5em;
+	}
+	.owl-stage-outer {
 	}
 }
-.owl-theme .owl-dots {
-	position: absolute;
-	bottom: -5em;
-	width: 100%;
-	text-align: center;
-}
-.owl-carousel-fullwidth.owl-theme .owl-dots {
-	bottom: 0;	
-	margin-bottom: 2.5em;
-}
-.owl-theme .owl-dots .owl-dot span {
-	width:10px;
-  	height:10px;
-	background: rgba(255,255,255,.4);
-	@include transition(.2s);
-	border: 2px solid transparent;
-	&:hover {
-		background: none;
-		background: rgba(255,255,255,1);
+.owl-item {
+	padding: 0 20px 36px;
+    @media #{$sm-min} {
+		padding: 0 60px 36px;
 	}
 }
-.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
-	background: rgba(255,255,255,1);
-	border: 2px solid transparent;
+.project-thumb {
+
 }

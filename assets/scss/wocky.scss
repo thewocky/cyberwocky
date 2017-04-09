@@ -1,17 +1,27 @@
 // Fonts
 
-@import 'config/normalize';
+// @import 'config/normalize';
+/* 
 @import 'compass';
 @import 'compass/support';
 @import 'compass/css3';
 
+
+ */
+
 // Import Bootstrap
+// @import 'bootstrap-custom';
 @import 'bootstrap';
 
 // fix assorted css 
 @import 'config/settings';
 @import 'config/mixins';
 @import 'config/typography';
+
+// libs
+@import 'lib/animate';
+@import 'lib/owl.carousel.min';
+@import 'lib/owl.theme.default.min';
 
 @import 'partials/global';
 @import 'partials/nav';

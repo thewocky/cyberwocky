@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-postcss');
 	grunt.loadNpmTasks('grunt-contrib-sass');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-concat-css');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	
@@ -24,11 +25,18 @@ module.exports = function(grunt) {
 		'assets/js/lib/jquery.easing.1.3.js',
 		'assets/js/lib/bootstrap.min.js',
 		'assets/js/lib/jquery.waypoints.min.js',
-		'assets/js/lib/jquery.magnific-popup.min.js',
 		'assets/js/lib/owl.carousel.min.js',
 		'assets/js/lib/jquery.countTo.js',
-		'assets/js/lib/TweenMax.min.js',
-		'assets/js/lib/MorphSVGPlugin.min.js',
+		'assets/js/lib/gsap/TweenMax.min.js',
+		'assets/js/lib/gsap/jquery.gsap.min.js',
+		'assets/js/lib/gsap/plugins/MorphSVGPlugin.min.js',
+		'assets/js/lib/gsap/plugins/ScrollToPlugin.js',
+		'assets/js/lib/gsap/easing/EasePack.js',
+		'assets/js/lib/scrollmagic/ScrollMagic.min.js',
+		'assets/js/lib/scrollmagic/plugins/animation.gsap.min.js',
+		'assets/js/lib/scrollmagic/plugins/animation.velocity.min.js',
+		'assets/js/lib/scrollmagic/plugins/debug.addIndicators.min.js',
+		'assets/js/lib/scrollmagic/plugins/jquery.ScrollMagic.min.js',
 		'assets/js/wocky/particles.js',
 		'assets/js/wocky/close-curve.js',
 		'assets/js/wocky/app-particles.js',
@@ -92,6 +100,13 @@ module.exports = function(grunt) {
 		    	src: ['assets/css/wocky.min.css']
 		    }
 		},
+		// concat animate, owl, etc.
+		concat_css: {
+		    options: {},
+		    files: {
+		      'assets/css/compiled.css': ['src/styles/componentA.css', 'src/styles/componentB.css'],
+		    },
+		  },
 
 		uglify: {
 			dev: {

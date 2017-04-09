@@ -1,14 +1,38 @@
 // Input Text 
 .form-control {
 	box-shadow: none!important;
-	border: 2px solid $brand-darker;
+	border: 2px solid $clr-grey-dk;
 	background: transparent;
-	font-family: $font-monsterrat;
+	font-family: $font-header;
 	&:hover, 
 	&:focus,
 	&:active {
 		outline: none;
 		box-shadow: none!important;
 		border: 2px solid $brand-primary;
+	}
+}
+
+.gform_wrapper {
+	ul.gform_fields {
+		li.gfield {
+			position: relative;
+			.top_label {
+				label {
+					position: absolute;
+				}
+			}
+			input[type=text],
+			textarea {
+				padding: 14px 14px 6px; 
+				border: none;
+			}
+			@media #{$sm-min} {
+				input[type=text],
+				textarea {
+					padding: 18px 16px 8px; 
+				}
+			}
+		}
 	}
 }

@@ -11,9 +11,12 @@ var resizeThrottle,
   boundDimensions = 320,  // outer square containing svg including glow
   shapeDimensions = 260,  // bounds of inner shpe
   innerPadding = 0.5 * ( boundDimensions - shapeDimensions ),      // padding between outer bounds and shape to accommodate glow
-  textCanvasElement = document.getElementById("wocky-text"),
-  fgCanvasElement = document.getElementById("wocky-shape"),
+  shapeCanvasElement = document.getElementById("wocky-shape"),
+  fgCanvasElement = document.getElementById("wocky-bg"),
   bgCanvasElement = document.getElementById("particle-field"),
+  wockySource = document.getElementById("wocky-svg"),
+  bgCanvasElements = document.getElementsByClassName("background");
+  fgCanvasElements = document.getElementsByClassName("foreground");
   scrollbarWidth = 15,
   winw = window.innerWidth - scrollbarWidth,
   winh = window.innerHeight,
@@ -33,11 +36,11 @@ var resizeThrottle,
 
   var bgParticleSettings = {
     selector: '#particle-field',
-    maxParticles: 240,
+    maxParticles: 200,
     sizeVariations: 0,
     sizeMin: 0,
-    speed: 0, // 1.8
-    color:  '#FFFFFF',
+    speed: 0.5, // 1.8
+    color:  '#3d455c', // '#4d5875',  // 6f7ea8
     minDistance: 120,
     connectParticles: true,
     responsive: null,
@@ -47,40 +50,25 @@ var resizeThrottle,
     {
        breakpoint: 1000,
        options: {
-         maxParticles: 200
+         maxParticles: 160
        }
      }, {
        breakpoint: 768,
        options: {
-         maxParticles: 160
+         maxParticles: 100
        }
      }, {
        breakpoint: 425,
        options: {
-         maxParticles: 120
+         maxParticles: 80
        }
      }, {
        breakpoint: 320,
        options: {
-         maxParticles: 80
+         maxParticles: 50
        }
      }
    ]
-  };
-
-  var fgParticleSettings = {
-    selector: '#particle-field',
-    maxParticles: 30,
-    sizeVariations: 0,
-    sizeMin: 0,
-    speed: 2,
-    color:  '#FFFF00',
-    minDistance: 80,
-    connectParticles: true,
-    responsive: null,
-    offset: { x:0, y:0 },
-    bounds: ctrTextBounds,
-    exclude: false
   };
 
 function getScrollWidth () {
@@ -118,27 +106,16 @@ var getScreenDim = function() {
   winw = window.innerWidth - getScrollWidth();
   winh = window.innerHeight;
 }
-var setCoords = function( x, y, len ) {
-
-  targetSizeRatio = len / boundDimensions ;
+var setCoords = function( x, y, len, svgSize ) {
+// log( 'set Coords: ' + svgSize );
+  targetSizeRatio = svgSize * len / boundDimensions ;
   bgParticleSettings.offset.x = -Math.round(innerPadding * targetSizeRatio);
   bgParticleSettings.offset.y = -Math.round(innerPadding * targetSizeRatio);
-  fgParticleSettings.offset.x = -Math.round(innerPadding * targetSizeRatio);
-  fgParticleSettings.offset.y = -Math.round(innerPadding * targetSizeRatio);
   ctrOffset = { x: x, y: y};
 
-  // ctrOffset.x
-  // console.log('targetSizeRatio: ' + targetSizeRatio );
   targetCoordsLeft = x + (innerPadding * targetSizeRatio);
   targetCoordsTop = y + (innerPadding * targetSizeRatio);
-  // winw = window.innerWidth - scrollbarWidth;
-  // winh = window.innerHeight;
   xMultiplier = window.innerWidth / winw;
-
-  // fgCanvasElement.setAttribute( 'style', 'left:-' + 0.0033 * winw + 'px' );
-
-  // log( 'setCoords: xMultiplier = ' + xMultiplier + '; len = ' + winw );
-  
 }
 
 var traceMoveTo = function( ctx, x, y ) {
@@ -211,78 +188,92 @@ var drawForeground = function( el ) {
   fgCanvasElement.height = winh;
   bgCanvasElement.width = winw;
   bgCanvasElement.height = winh;
+  shapeCanvasElement.width = winw;
+  shapeCanvasElement.height = winh;
 
   var devicePixelRatio, backingStoreRatio;
 
-  var ctx = el.getContext("2d"),
+  var ctxFg = fgCanvasElement.getContext("2d"),
+    ctxGlow = shapeCanvasElement.getContext("2d"),
     targetSize,
     devicePixelRatio = window.devicePixelRatio || 1;
-    backingStoreRatio = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || 
-                        ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1;
+    backingStoreRatio = ctxFg.webkitBackingStorePixelRatio || ctxFg.mozBackingStorePixelRatio || ctxFg.msBackingStorePixelRatio || 
+                        ctxFg.oBackingStorePixelRatio || ctxFg.backingStorePixelRatio || 1;
 
-  var canvasRatio = devicePixelRatio / backingStoreRatio;
-
-  var canvasWidth = winw * canvasRatio,
-    canvasHeight = winh * canvasRatio;
+  var canvasRatio = ( devicePixelRatio / backingStoreRatio ),
+    svgSize = 0.01 * parseFloat( window.getComputedStyle(wockySource).width ) * canvasRatio,   // css w/h of svg
+    svgSize = 0.01 * parseFloat( window.getComputedStyle(wockySource).width ),   // try w/o canvas ratio
+    canvasWidth = Math.round(svgSize * winw),
+    canvasHeight = Math.round(svgSize * winh);
   // must explicitly define element dimensions
 
-  var targetSize = ( winw > winh ) ? ( winh - 2 ) : ( winw - 2 ),
-    ptLeft = 0.5 * ( winw - targetSize ),
-    ptTop = 0.5 * ( winh - targetSize );
+//   console.log( 'svgSize: ' + svgSize + ', ' + canvasWidth + ', ' + canvasHeight );
 
-  setCoords( ptLeft, ptTop, targetSize );
+  var targetSize = ( winw > winh ) ? ( winh - 2 ) : ( winw - 2 ),
+    canvasSize = ( canvasWidth > canvasHeight ) ? ( canvasHeight - 2 ) : ( canvasWidth - 2 ),
+    ptLeft = 0.5 * ( winw - canvasSize ),
+    ptTop = 0.5 * ( winh - canvasSize );
+
+  setCoords( ptLeft, ptTop, targetSize, svgSize );
 
 // 1: trace & fill outer svg path follow 
-  ctx.fillStyle = fgInnerColor;
+  ctxFg.fillStyle = fgInnerColor;
+  ctxGlow.fillStyle = fgInnerColor;
   var svgPath = document.getElementById( 'logo-outer-path' ).getAttribute( 'd' );
   shapePath = new Path2D( svgPath );
 
-  ctx.translate( ctrOffset.x, ctrOffset.y  );
-  ctx.scale( targetSizeRatio, targetSizeRatio );
-  ctx.closePath();
+  ctxFg.translate( ctrOffset.x, ctrOffset.y  );
+  ctxFg.scale( targetSizeRatio, targetSizeRatio );
+  ctxFg.closePath();
   // add outer glow
-  ctx.shadowBlur = 60;
-  ctx.shadowColor = fgShadowColor;
-  ctx.fill( shapePath );
-  ctx.restore();
+  ctxFg.fill( shapePath );
+  ctxFg.restore();
+
+  ctxGlow.translate( ctrOffset.x, ctrOffset.y  );
+  ctxGlow.scale( targetSizeRatio, targetSizeRatio );
+  ctxGlow.closePath();
+  ctxGlow.shadowBlur = 60;
+  ctxGlow.shadowColor = fgShadowColor;
+  ctxGlow.fill( shapePath );
+  ctxGlow.restore();
 
   // 2: knock out next set of paths for inner text
-  ctx.globalCompositeOperation = "destination-out";
+  ctxFg.globalCompositeOperation = "destination-out";
   var svgLetters = document.getElementsByClassName("logo-path-outer"),
     svgRects = document.getElementsByClassName("logo-rect-outer");
   var i, svgLen = svgLetters.length;
   for (i = 0; i < svgLen; i++) {
       var ltrPath = svgLetters[i].getAttribute( 'd' );
       var ltrPath2d = new Path2D( ltrPath );
-      ctx.fill( ltrPath2d );
+      ctxFg.fill( ltrPath2d );
   }
   svgLen = svgRects.length;
 
   for (i = 0; i < svgLen; i++) {
-      ctx.fillRect( svgRects[i].getAttribute( 'x' ),
+      ctxFg.fillRect( svgRects[i].getAttribute( 'x' ),
         svgRects[i].getAttribute( 'y' ),
         svgRects[i].getAttribute( 'width' ),
         svgRects[i].getAttribute( 'height' ) );
   }
 
   // 3: add clr & inner glow for logo text
-  ctx.globalCompositeOperation = ("source-over");
-  ctx.fillStyle = innerTextColor;
-  ctx.strokeStyle = innerTextShadowColor;
+  ctxGlow.globalCompositeOperation = ("source-over");
+  ctxGlow.fillStyle = innerTextColor;
+  ctxGlow.strokeStyle = innerTextShadowColor;
 
   // save, .beginPath, lots of path commands (no strokes/fills), .clip, stroke/fill, .restore
-  ctx.lineWidth = 1;
-  ctx.filter = 'blur(1px)';
+  ctxGlow.lineWidth = 1;
+  ctxGlow.filter = 'blur(1px)';
   svgLen = svgLetters.length;
   for (i = 0; i < svgLen; i++) {
       var ltrPath = svgLetters[i].getAttribute( 'd' );
       var ltrPath2d = new Path2D( ltrPath );
-      // ctx.fill( ltrPath2d );
-      ctx.save();
-      ctx.clip( ltrPath2d );
-      ctx.fill( ltrPath2d );
-      ctx.stroke( ltrPath2d );
-      ctx.restore();
+      // ctxGlow.fill( ltrPath2d );
+      ctxGlow.save();
+      ctxGlow.clip( ltrPath2d );
+      ctxGlow.fill( ltrPath2d );
+      ctxGlow.stroke( ltrPath2d );
+      ctxGlow.restore();
   }
 
   var svgRects = document.getElementsByClassName("logo-rect-outer");
@@ -290,32 +281,32 @@ var drawForeground = function( el ) {
   for (i = 0; i < svgLen; i++) {
       // var ltrPath = svgRects[i].getAttribute( 'd' );
       // var ltrPath2d = new Path2D( ltrPath );
-      ctx.save();
-      ctx.rect( svgRects[i].getAttribute( 'x' ),
+      ctxGlow.save();
+      ctxGlow.rect( svgRects[i].getAttribute( 'x' ),
         svgRects[i].getAttribute( 'y' ),
         svgRects[i].getAttribute( 'width' ),
         svgRects[i].getAttribute( 'height' ) );
-      ctx.clip();
-      ctx.fillRect( svgRects[i].getAttribute( 'x' ),
+      ctxGlow.clip();
+      ctxGlow.fillRect( svgRects[i].getAttribute( 'x' ),
         svgRects[i].getAttribute( 'y' ),
         svgRects[i].getAttribute( 'width' ),
         svgRects[i].getAttribute( 'height' ) );
-      ctx.strokeRect( svgRects[i].getAttribute( 'x' ),
+      ctxGlow.strokeRect( svgRects[i].getAttribute( 'x' ),
         svgRects[i].getAttribute( 'y' ),
         svgRects[i].getAttribute( 'width' ),
         svgRects[i].getAttribute( 'height' ) );
-      ctx.restore();
+      ctxGlow.restore();
   }
 /*
-  ctx.strokeStyle = 'white';
-  ctx.lineWidth = 1;
-  ctx.filter = null;
-  ctx.save();
-  ctx.fillRect( ctrTextBounds.x,
+  ctxFg.strokeStyle = 'white';
+  ctxFg.lineWidth = 1;
+  ctxFg.filter = null;
+  ctxFg.save();
+  ctxFg.fillRect( ctrTextBounds.x,
     ctrTextBounds.y,
     ctrTextBounds.width,
     ctrTextBounds.height );
-  ctx.restore();
+  ctxFg.restore();
 */
 };
 
@@ -324,7 +315,8 @@ window.onload = function() {
   drawForeground( fgCanvasElement );
   initParticles();
 
-  updateLogoContour();
+  updateLogoContour(); 
+
 
 }
 
