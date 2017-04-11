@@ -193,7 +193,7 @@ var Particles = (function(window, document) {
 
     _.ratio = devicePixelRatio / backingStoreRatio;
 
-    log( '_.ratio: ' + _.ratio);
+    // log( '_.ratio: ' + _.ratio);
 
     _.element.width = window.innerWidth * _.ratio;
     _.element.height = window.innerHeight * _.ratio;

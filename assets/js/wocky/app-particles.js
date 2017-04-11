@@ -33,13 +33,14 @@ var resizeThrottle,
     width:220,
     height:30 };
 
+var bgParticleSpeed = 'undefined' == typeof particleSpeed ? 0.5 : particleSpeed;
 
   var bgParticleSettings = {
     selector: '#particle-field',
     maxParticles: 200,
     sizeVariations: 0,
     sizeMin: 0,
-    speed: 0.5, // 1.8
+    speed: bgParticleSpeed, // 1.8
     color:  '#3d455c', // '#4d5875',  // 6f7ea8
     minDistance: 120,
     connectParticles: true,
@@ -104,7 +105,17 @@ scrollbarWidth = getScrollWidth();
 
 var getScreenDim = function() {
   winw = window.innerWidth - getScrollWidth();
-  winh = window.innerHeight;
+  // winh = window.innerHeight;
+  $( '#home' ).width( winw );
+  winh = $( '#home' ).outerHeight();
+    // lock in screen vh values
+  setTimeout(function(){
+    $( '.page-ht' ).each(function(){
+      // log( 'height: ' + $( this ).height() + '; ' + $( this ).outerHeight() );
+      $( this ).css( 'height', winh + 'px' );
+    });
+  }, 100);
+
 }
 var setCoords = function( x, y, len, svgSize ) {
 // log( 'set Coords: ' + svgSize );
@@ -145,9 +156,14 @@ var traceLineTo = function( ctx, x1, y1 ) {
 
 var onWindowResize = function() {
     resizeThrottle && clearTimeout(resizeThrottle), resizeThrottle = setTimeout(function() {
-      drawForeground( fgCanvasElement );
-      updateLogoContour();
-      // initParticles();
+      var prevWinw = winw,
+        prevWinh = winh;
+      getScreenDim();
+      if( prevWinw != winw || prevWinh != winh ) {
+        drawForeground( fgCanvasElement );
+        updateLogoContour();
+        // initParticles();
+      }
     }, 500);
   },
 
@@ -183,7 +199,7 @@ var drawForeground = function( el ) {
     return false;
   }
 
-  getScreenDim();
+  // getScreenDim();
   fgCanvasElement.width = winw;
   fgCanvasElement.height = winh;
   bgCanvasElement.width = winw;
@@ -312,6 +328,7 @@ var drawForeground = function( el ) {
 
 window.onload = function() {
 
+  getScreenDim();
   drawForeground( fgCanvasElement );
   initParticles();
 

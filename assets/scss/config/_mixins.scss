@@ -20,6 +20,32 @@
 }
 
 
+@mixin fixed-page-ht() {
+  @media only screen and (max-width:767px) and (orientation: landscape) {
+    height: 100vh;
+  }
+  @media only screen and (max-width:767px) and (min-width:480px) and (orientation: portrait) {
+    // assume 16:9, minus some for header
+    // 1.778 true aspect ratio
+    // height: 170vw;
+    height: 150vw;
+  }
+  @media only screen and (max-width:479px) and (orientation: portrait) {
+    // height: 164vw;
+    height: 144vw;
+  }
+  @media only screen and (min-width:768px) and (orientation: portrait) {
+    // assume 4:3, minus some for header
+    // 1.3333 true aspect ratio
+    // height: 130vw;
+    height: 125vw;
+  }
+  @media only screen and (min-width:768px) and (orientation: landscape) {
+    height: 100vh;
+  }
+}
+
+
 @mixin _animate ($property:all, $dur:200ms, $easing:ease-in-out, $delay:0s) {
   transition: $property $dur $easing $delay;
   -webkit-backface-visibility: hidden;

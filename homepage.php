@@ -21,7 +21,10 @@ get_header();
 					<div class="sm-left area-3"><img class="offset-badge" src="<?= get_template_directory_uri() ?>/assets/img/yin-yang.svg" /><h3>Coder</h3></div>
 				</div>
 				<div class="flex flex-horiz flex-child area-4">
-					<div class="sm-offset-golden-third sm-left"><p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance in form as well as function in my work. I find both halves of the brain work better when they work together.</p><p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside da&nbsp;Vinci and Ben Franklin.</p></div>
+					<div class="sm-offset-golden-third sm-left">
+						<p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance to form as well as function.</p>
+						<p>Popular culture suggests that creative types are right-brain dominant, while scientists and logic-minded folks are left-brainers. I contend that both halves of the brain work better when they work together.</p>
+						<p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside da&nbsp;Vinci and Ben Franklin.</p></div>
 				</div>
 			</div>
 
@@ -93,6 +96,8 @@ endif;
 						<li>Shopify Theming</li>
 						<li>Web App Development</li>
 						<li>Interface Design</li>
+						<li>UX Research &amp; Analysis</li>
+						<li>SEO Strategy</li>
 						<li>Information Architecture</li>
 						<li>Branding</li>
 						<li>Social Media Marketing</li>

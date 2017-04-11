@@ -14,25 +14,94 @@
 }
 
 .gform_wrapper {
+		.gform_footer {
+			padding-left: 15px;
+			padding-right: 15px;
+			text-align: right;
+			input[type="submit"] {
+				letter-spacing: 1px;
+				margin-bottom: 12px;
+				@include _animate();
+				padding: 10px 16px;
+				margin-right: 0 !important;
+				border: none !important;
+				border-radius: 0;
+				background-color: $clr-mid-white;
+				color: $clr-grey-mid;
+				&:hover, &:focus, &:active {
+					// box-shadow: none!important;
+					outline: none!important;
+					// background: rgba(110,112,115,0.05)!important;
+					background-color: white;
+					color: $clr-grey-dk;
+					@include card(1);
+				}
+			}
+
+		}
+	.gform_body .top_label div.ginput_container {
+		margin-top: 0;
+	}
 	ul.gform_fields {
 		li.gfield {
 			position: relative;
-			.top_label {
-				label {
-					position: absolute;
+			&.col-sm-12 {
+				padding-left: 0;
+			}
+			&.col-sm-6 {
+				padding-left: 0;
+				clear: none;
+			}
+			label {
+				// font-weight: 400;
+				// color: $clr-grey-lt;
+			}
+			label {
+				position: absolute;
+				font-weight: 400;
+				color: $clr-grey-mid;
+				top: 14px;
+				left: 14px;
+				@include _animate();
+				@media #{$sm-min} {
+					top: 18px;
+					left: 16px;
 				}
 			}
+			.top_label {
+			}
+			input[type="email"],
+			input[type="text"],
+			input[type=text] {
+				//min-height: 50px;
+			}
+			input[type="email"],
+			input[type="text"],
 			input[type=text],
 			textarea {
-				padding: 14px 14px 6px; 
+				padding: 14px 14px 6px !important; 
 				border: none;
+				color: $brand-black;
 			}
+	        &.not-empty {
+		        label {
+		            top: 6px;
+		            font-size: 60%;
+		            opacity: 0.6;
+		            @media #{$sm-min} {
+		            }
+		        }
+	        }
 			@media #{$sm-min} {
+				input[type="email"],
+				input[type="text"],
 				input[type=text],
 				textarea {
-					padding: 18px 16px 8px; 
+					padding: 18px 16px 8px !important; 
+					//min-height: 60px;
 				}
 			}
+
 		}
 	}
 }

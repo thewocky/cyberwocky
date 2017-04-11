@@ -299,7 +299,7 @@
 		$section.waypoint(function(direction) {
 		  	if (direction === 'down') {
 		    	navActive($(this.element).data('section'));
-		    	console.log( 'waypoint nav: ' + $(this.element).data('section') );
+		    	// console.log( 'waypoint nav: ' + $(this.element).data('section') );
 		  	}
 		}, {
 		  	offset: '150px'
@@ -316,14 +316,33 @@
 	};
 
 	
-
+/*
     var e = function() {
         var e = jQuery(this);
         "hidden" != e.attr("type") && e.toggleClass("not-empty", "" != e.val());
     };
     $('input[type="email"]').each(e).on("input", e);
+*/
 
-
+    var addFocusClass = function() {
+        var el = $( this ),
+        	$parent = el.parent().parent();
+        if( "hidden" != el.attr("type")  ) {
+        	$parent.addClass( "not-empty" );
+        }
+    };
+    var checkIfEmpty = function() {
+        var el = $( this ),
+        	$parent = el.parent().parent();
+        // console.log( el.val() );
+        if( "hidden" != el.attr("type")  ) {
+        	if( "" != el.val() && ! $parent.hasClass( "not-empty" ) ) {
+        		$parent.addClass( "not-empty" );
+        	} else if( "" == el.val() && $parent.hasClass( "not-empty" ) ) {
+        		$parent.removeClass( "not-empty" );
+        	}
+        }
+    };
 	// Document on load.
 	$(function(){
 
@@ -341,6 +360,18 @@
 
 		// init smController
 		var smController = new ScrollMagic.Controller();
+	    // $("#gform_fields_1 input").each(e).on("input", e);
+
+	    $("#gform_fields_1 textarea").each( function(){
+	    	// $( this ).on("input", checkIfEmpty);
+	    	$( this ).on("focus", addFocusClass);
+	    	$( this ).on("blur", checkIfEmpty);
+	    });
+	    $("#gform_fields_1 input").each( function(){
+	    	// $( this ).on("input", checkIfEmpty);
+	    	$( this ).on("focus", addFocusClass);
+	    	$( this ).on("blur", checkIfEmpty);
+	    });
 
 /*
 		var heroTween = TweenMax.to("#home", 0.5, {

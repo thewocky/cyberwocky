@@ -278,9 +278,8 @@ a > img {
 .bg-page {
 	position: fixed;
 	top: 0;
-	height: 100vh;
-	.canvas-wrapper {
-		position: fixed;
+	&.canvas-wrapper {
+		height: 200vw !important;
 	}
 }
 

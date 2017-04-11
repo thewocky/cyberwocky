@@ -791,7 +791,7 @@ var Particles = (function(window, document) {
 
     _.ratio = devicePixelRatio / backingStoreRatio;
 
-    log( '_.ratio: ' + _.ratio);
+    // log( '_.ratio: ' + _.ratio);
 
     _.element.width = window.innerWidth * _.ratio;
     _.element.height = window.innerHeight * _.ratio;
@@ -1611,13 +1611,14 @@ var resizeThrottle,
     width:220,
     height:30 };
 
+var bgParticleSpeed = 'undefined' == typeof particleSpeed ? 0.5 : particleSpeed;
 
   var bgParticleSettings = {
     selector: '#particle-field',
     maxParticles: 200,
     sizeVariations: 0,
     sizeMin: 0,
-    speed: 0.5, // 1.8
+    speed: bgParticleSpeed, // 1.8
     color:  '#3d455c', // '#4d5875',  // 6f7ea8
     minDistance: 120,
     connectParticles: true,
@@ -1682,7 +1683,17 @@ scrollbarWidth = getScrollWidth();
 
 var getScreenDim = function() {
   winw = window.innerWidth - getScrollWidth();
-  winh = window.innerHeight;
+  // winh = window.innerHeight;
+  $( '#home' ).width( winw );
+  winh = $( '#home' ).outerHeight();
+    // lock in screen vh values
+  setTimeout(function(){
+    $( '.page-ht' ).each(function(){
+      // log( 'height: ' + $( this ).height() + '; ' + $( this ).outerHeight() );
+      $( this ).css( 'height', winh + 'px' );
+    });
+  }, 100);
+
 }
 var setCoords = function( x, y, len, svgSize ) {
 // log( 'set Coords: ' + svgSize );
@@ -1723,9 +1734,14 @@ var traceLineTo = function( ctx, x1, y1 ) {
 
 var onWindowResize = function() {
     resizeThrottle && clearTimeout(resizeThrottle), resizeThrottle = setTimeout(function() {
-      drawForeground( fgCanvasElement );
-      updateLogoContour();
-      // initParticles();
+      var prevWinw = winw,
+        prevWinh = winh;
+      getScreenDim();
+      if( prevWinw != winw || prevWinh != winh ) {
+        drawForeground( fgCanvasElement );
+        updateLogoContour();
+        // initParticles();
+      }
     }, 500);
   },
 
@@ -1761,7 +1777,7 @@ var drawForeground = function( el ) {
     return false;
   }
 
-  getScreenDim();
+  // getScreenDim();
   fgCanvasElement.width = winw;
   fgCanvasElement.height = winh;
   bgCanvasElement.width = winw;
@@ -1890,6 +1906,7 @@ var drawForeground = function( el ) {
 
 window.onload = function() {
 
+  getScreenDim();
   drawForeground( fgCanvasElement );
   initParticles();
 
@@ -2201,7 +2218,7 @@ window.addEventListener('resize', onWindowResize, false);
 		$section.waypoint(function(direction) {
 		  	if (direction === 'down') {
 		    	navActive($(this.element).data('section'));
-		    	console.log( 'waypoint nav: ' + $(this.element).data('section') );
+		    	// console.log( 'waypoint nav: ' + $(this.element).data('section') );
 		  	}
 		}, {
 		  	offset: '150px'
@@ -2218,14 +2235,33 @@ window.addEventListener('resize', onWindowResize, false);
 	};
 
 	
-
+/*
     var e = function() {
         var e = jQuery(this);
         "hidden" != e.attr("type") && e.toggleClass("not-empty", "" != e.val());
     };
     $('input[type="email"]').each(e).on("input", e);
+*/
 
-
+    var addFocusClass = function() {
+        var el = $( this ),
+        	$parent = el.parent().parent();
+        if( "hidden" != el.attr("type")  ) {
+        	$parent.addClass( "not-empty" );
+        }
+    };
+    var checkIfEmpty = function() {
+        var el = $( this ),
+        	$parent = el.parent().parent();
+        // console.log( el.val() );
+        if( "hidden" != el.attr("type")  ) {
+        	if( "" != el.val() && ! $parent.hasClass( "not-empty" ) ) {
+        		$parent.addClass( "not-empty" );
+        	} else if( "" == el.val() && $parent.hasClass( "not-empty" ) ) {
+        		$parent.removeClass( "not-empty" );
+        	}
+        }
+    };
 	// Document on load.
 	$(function(){
 
@@ -2243,6 +2279,18 @@ window.addEventListener('resize', onWindowResize, false);
 
 		// init smController
 		var smController = new ScrollMagic.Controller();
+	    // $("#gform_fields_1 input").each(e).on("input", e);
+
+	    $("#gform_fields_1 textarea").each( function(){
+	    	// $( this ).on("input", checkIfEmpty);
+	    	$( this ).on("focus", addFocusClass);
+	    	$( this ).on("blur", checkIfEmpty);
+	    });
+	    $("#gform_fields_1 input").each( function(){
+	    	// $( this ).on("input", checkIfEmpty);
+	    	$( this ).on("focus", addFocusClass);
+	    	$( this ).on("blur", checkIfEmpty);
+	    });
 
 /*
 		var heroTween = TweenMax.to("#home", 0.5, {
