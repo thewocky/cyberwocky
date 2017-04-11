@@ -146,9 +146,33 @@
 	}
 }
 .owl-item {
-	padding: 0 20px 36px;
+	padding: 12px 20px 24px;
     @media #{$sm-min} {
-		padding: 0 60px 36px;
+		padding: 20px 60px 20px;
+	}
+	h4 {
+		font-size: 18px;
+	    @media #{$sm-min} {
+			font-size: 20px;
+		}
+	}
+	p {
+		font-size: 88%;
+	}
+	p.details {
+		color: lighten($clr-grey-mid, 15%);
+		font-weight: bold;
+	}
+	.item {
+		.item-thumb {
+
+		}
+		.item-content {
+			padding-top: 14px;
+		    @media #{$sm-min} {
+				padding-top: 48px;
+			}
+		}
 	}
 }
 .project-thumb {

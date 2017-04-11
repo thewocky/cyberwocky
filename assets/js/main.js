@@ -1684,16 +1684,18 @@ scrollbarWidth = getScrollWidth();
 var getScreenDim = function() {
   winw = window.innerWidth - getScrollWidth();
   // winh = window.innerHeight;
-  $( '#home' ).width( winw );
   winh = $( '#home' ).outerHeight();
     // lock in screen vh values
+/*    
+  $('.canvas-wrapper').width( winw );
+  $( '#hero' ).width( winw );
   setTimeout(function(){
     $( '.page-ht' ).each(function(){
       // log( 'height: ' + $( this ).height() + '; ' + $( this ).outerHeight() );
       $( this ).css( 'height', winh + 'px' );
     });
   }, 100);
-
+*/
 }
 var setCoords = function( x, y, len, svgSize ) {
 // log( 'set Coords: ' + svgSize );
@@ -1778,10 +1780,22 @@ var drawForeground = function( el ) {
   }
 
   // getScreenDim();
+
+
+  $('.canvas-wrapper').width( winw );
+  $( '#hero' ).width( winw );
+  setTimeout(function(){
+    $( '.page-ht' ).each(function(){
+      // log( 'height: ' + $( this ).height() + '; ' + $( this ).outerHeight() );
+      $( this ).css( 'height', winh + 'px' );
+    });
+  }, 100);
+
+
   fgCanvasElement.width = winw;
   fgCanvasElement.height = winh;
   bgCanvasElement.width = winw;
-  bgCanvasElement.height = winh;
+  bgCanvasElement.height = winh * 1.5;
   shapeCanvasElement.width = winw;
   shapeCanvasElement.height = winh;
 

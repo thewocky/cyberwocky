@@ -39,6 +39,7 @@ $work_query = new WP_Query( $work_args );
 if ( $work_query->have_posts() ) :
 ?>
 	    	<div class="animate-box">
+	    		<h3>Selected Projects</h3>
 				<div class="owl-carousel">
 <?php
 	while ( $work_query->have_posts() ) :
@@ -53,7 +54,7 @@ if ( $work_query->have_posts() ) :
 			    			<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'project-thumb' ) ); ?>
 			    		</div>
 			    		<div class="col-sm-6 flex item-content">
-			    			<h3><?php the_title();?></h3>
+			    			<h4><?php the_title();?></h4>
 			    			<?php the_content();?>
 			    		</div>
 			    	</div>
@@ -70,7 +71,7 @@ endif;
 ?>
 			<div id="clients" data-section="clients" class="subsection sec-clients">
 				<div class="container">
-					<div class="client-leadin">Cyberwocky is honored to have worked with extraordinarily talented teams representing some of the world's leading brands.</div>
+					<div class="client-leadin">Cyberwocky is honored to have worked with some of the world's leading brands.</div>
 					<div class="row client-logos">
 						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/disney-logo.svg" alt="Disney" /></div></div>
 						<div class="col-md-3 col-sm-4 col-xs-6 logo-wrapper animate-box"><div class="logo-container"><img class="logo" src="<?= get_template_directory_uri() ?>/assets/img/clients/microsoft-logo.svg" alt="Microsoft" /></div></div>
@@ -87,8 +88,8 @@ endif;
 		<section id="services" data-section="services" class="sec-services">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3">
-					<p><strong>My mission is to help my clients succeed.</strong> Web design is my game, but a business is about so much more. Whether you're a fledgling startup looking to establish a brand or a multinational behemoth launching a new product, I can support your business needs across the board.</p>
+					<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+					<p><strong>My mission is to help my clients succeed.</strong> Web design is my game, but your business is so much more. Whether you're a fledgling startup looking to establish a brand or a multinational behemoth launching a new product, I can support your business needs across the board.</p>
 					<ul>
 						<li>Front-end Web Development</li>
 						<li>Javascript Development</li>
@@ -112,7 +113,7 @@ endif;
 		<section id="contact" data-section="contact" class="sec-contact">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3">
+					<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 					<p>Drop me a line! If you have a project you'd like to discuss, please provide as many details as possible.</p>
  				<?php
  				// gravity_form( $id_or_title, $display_title = true, $display_description = true, $display_inactive = false, $field_values = null, $ajax = false, $tabindex, $echo = true );

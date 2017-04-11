@@ -15,8 +15,8 @@
 
 .gform_wrapper {
 		.gform_footer {
-			padding-left: 15px;
-			padding-right: 15px;
+			padding-left: 15px !important;
+			padding-right: 15px !important;
 			text-align: right;
 			input[type="submit"] {
 				letter-spacing: 1px;
@@ -26,8 +26,8 @@
 				margin-right: 0 !important;
 				border: none !important;
 				border-radius: 0;
-				background-color: $clr-mid-white;
-				color: $clr-grey-mid;
+				background-color: $clr-off-white;
+				color: $brand-secondary;
 				&:hover, &:focus, &:active {
 					// box-shadow: none!important;
 					outline: none!important;
@@ -41,6 +41,11 @@
 		}
 	.gform_body .top_label div.ginput_container {
 		margin-top: 0;
+	}
+	.gform_body {
+		ul.gform_fields {
+			padding-left: 15px;
+		}
 	}
 	ul.gform_fields {
 		li.gfield {

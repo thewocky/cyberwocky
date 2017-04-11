@@ -11,8 +11,8 @@ body {
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 26px;
-	color: lighten($clr-grey-dk, 15%);
-	background: $brand-bg-color;
+	color: $clr-grey-dk;
+	background: $brand-black;
 	height: 100%;
 	position: relative;
 	&.wocky-overflow-x {
@@ -279,7 +279,7 @@ a > img {
 	position: fixed;
 	top: 0;
 	&.canvas-wrapper {
-		height: 200vw !important;
+		// height: 200vh;
 	}
 }
 
