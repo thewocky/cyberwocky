@@ -1,6 +1,8 @@
 /*!
  * config particles
  */
+
+var $ = 'undefined' == typeof $ ? jQuery : $;
 // $glow-blue: rgb(207,219,255);
 var resizeThrottle,
   targetCoordsLeft = 0,

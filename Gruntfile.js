@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 
     // JS libs for use in theme
     var jsFiles = [
-		'assets/js/lib/jquery.min.js',
+		// 'assets/js/lib/jquery.min.js',
 		'assets/js/lib/jquery.easing.1.3.js',
 		'assets/js/lib/bootstrap.min.js',
 		'assets/js/lib/jquery.waypoints.min.js',

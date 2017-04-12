@@ -42,6 +42,11 @@
 	.gform_body .top_label div.ginput_container {
 		margin-top: 0;
 	}
+	@media only screen and (min-width: 641px) {
+		.gform_body {
+		    width: auto !important;
+		}
+	}
 	.gform_body {
 		ul.gform_fields {
 			padding-left: 15px;
@@ -109,4 +114,8 @@
 
 		}
 	}
+}
+.gform_confirmation_wrapper {
+	padding-left: 15px;
+	padding-right: 15px;
 }

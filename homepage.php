@@ -114,11 +114,21 @@ endif;
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-					<p>Drop me a line! If you have a project you'd like to discuss, please provide as many details as possible.</p>
- 				<?php
- 				// gravity_form( $id_or_title, $display_title = true, $display_description = true, $display_inactive = false, $field_values = null, $ajax = false, $tabindex, $echo = true );
- 				gravity_form( 1, true, true, false, null, true );
- 				?>	
+	 				<?php
+	 				if (have_posts()): while (have_posts()) : the_post();
+
+		 				$contact_field = get_field( 'contact_field' );
+
+		 				if( $contact_field ) {
+		 					echo $contact_field;
+		 				}
+								
+					endwhile;
+					endif;
+
+	 				// gravity_form( $id_or_title, $display_title = true, $display_description = true, $display_inactive = false, $field_values = null, $ajax = false, $tabindex, $echo = true );
+	 				// gravity_form( 1, true, true, false, null, true );
+	 				?>	
 					</div>
 				</div>
 			</div>

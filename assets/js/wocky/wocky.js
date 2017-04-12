@@ -1,5 +1,4 @@
 ;(function () {
-	
 	'use strict';
 
 	// iPad and iPod detection	
@@ -41,7 +40,7 @@
 
 	// Click outside of offcanvas
 	var closeMobileMenu = function() {
-    	log( 'closeMobileMenu: ' + $('#wocky-menu').hasClass('nav-awake') );
+    	// log( 'closeMobileMenu: ' + $('#wocky-menu').hasClass('nav-awake') );
     	if ( $('#wocky-menu').hasClass('nav-awake') ) {
     		$('#wocky-menu').removeClass('nav-awake');
     		$('.js-wocky-nav-toggle').removeClass('active');

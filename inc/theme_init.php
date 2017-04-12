@@ -85,7 +85,7 @@ function wocky_scripts_and_styles()
   
    if ( ! is_admin() ) {
         // jQuery
-        wp_deregister_script('jquery');
+        // wp_deregister_script('jquery');
 
         // Modernizr
         wp_register_script('modernizr', get_template_directory_uri() . '/assets/js/lib/modernizr.min.js',
@@ -97,7 +97,7 @@ function wocky_scripts_and_styles()
         wp_register_script(
             'wockyscripts',
             get_template_directory_uri() . '/assets/js/main' . wocky_minify() . '.js',
-            array( 'modernizr'),
+            array( 'modernizr', 'jquery' ),
             wocky_version(),
             true );
 
