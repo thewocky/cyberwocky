@@ -103,12 +103,15 @@
 		.menu-logo {
 			order: 0;
 			width: 0px;
-			padding-top: 26px;
+			// padding-top: 26px;
 			display: inline-block;
 			margin-left: 20px;
 			margin-right: 20px;
 			transform: translateY(-100px);
 			@include _animate();
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			body.scrolled & {
 				width: 220px;
 				transform: translateY(0);
@@ -206,14 +209,17 @@
 
 .wocky-brand {
  	svg {
- 		height: 40px;
+ 		height: 15px;
  		width: 160px;
 		@media #{$sm-min} {
- 			height: 50px;
+ 			height: 21px;
 	 		width: 220px;
+			margin-top: 6px;
 		}
 		@media #{$md-min} {
+ 			height: 24px;
 	 		width: 260px;
+			margin-top: 8px;
 		}
 		image {
 			width: 100%;

@@ -44,7 +44,6 @@ function detectIE() {
   return false;
 }
 var browserIsIE = detectIE();
-var browserIsIE = true;
 var domHtml = document.getElementsByTagName("html"); 
 if( browserIsIE ) {
 	domHtml[0].classList.add('is-ie');
@@ -119,7 +118,7 @@ if( browserIsIE ) {
 		                <div class="menu-logo">
 			                <a class="wocky-brand" href="#home" data-nav-section="home">
 			                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-			                        <image x="0" y="0" width="158" height="40" xlink:href="<?= get_template_directory_uri() ?>/assets/img/cyberwocky-logo-nav.svg"></image>
+			                        <image x="0" y="0" width="100%" height="100%" xlink:href="<?= get_template_directory_uri() ?>/assets/img/cyberwocky-logo-nav.svg"></image>
 			                    </svg>
 			                </a>
 						</div>
