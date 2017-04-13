@@ -24,7 +24,33 @@ global $hide_nav;
 		<meta name="description" content="<?php bloginfo('description'); ?>">
 
 		<?php wp_head(); ?>
+<script type="text/javascript">
 
+function detectIE() {
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf('MSIE ');
+  if (msie > 0) {
+    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+  }
+  var trident = ua.indexOf('Trident/');
+  if (trident > 0) {
+    var rv = ua.indexOf('rv:');
+    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+  }
+  var edge = ua.indexOf('Edge/');
+  if (edge > 0) {
+    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+  }
+  return false;
+}
+var browserIsIE = detectIE();
+var domHtml = document.getElementsByTagName("html"); 
+if( browserIsIE ) {
+	domHtml[0].classList.add('is-ie');
+} else {
+	domHtml[0].classList.add('not-ie');
+}
+</script>
 	</head>
 	<body <?php body_class(); ?>>
 	<!-- wrapper -->
@@ -32,8 +58,8 @@ global $hide_nav;
 		<div id="wocky-wrap">
 			<div class="bg-page canvas-wrapper bg-brand-dk">
 			    <canvas id="particle-field" class="background"></canvas>
-			    <svg version="1.1" baseProfile="tiny" id="wocky-svg" class="wocky-path" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-			     x="0px" y="0px" width="100%" height="100%" width-z="320px" height-z="320px" viewBox="0 0 320 320" xml:space="preserve">
+			    <svg version="1.1" baseProfile="tiny" id="wocky-svg" class="wocky-path hero-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+			     x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 320" xml:space="preserve">
 
 			      <path id="logo-outer-path" d="M221.17,48.349c28.701,21.507,8.941,102.05-52.143,102.05h-17.417c-4.741-7.322-7.668-15.209-6.613-24.875 c2.242-20.536,15.729-20.452,23.975-16.463l0.041,0.044c3.555,2.18-2.527,6.961,0,11.294c2.526,4.333,7.859,9,9.859,10.667 s5.666-2,7.333-6s2.854-14.406-2.478-21.406c-5.334-7-13.23-11.116-26.869-11.116c-18.612,0-30.372,21.852-32.194,36.003 c-0.731,5.684-1.085,10.807-1.001,15.658c-39.054-19.268-48.703-77.971-24.836-95.856C59.438,69.982,32.734,111.855,32.734,159.97 c0,48.022,26.602,89.827,65.871,111.495c-26.334-19.217-22.309-81.355,14.25-81.355c19.018,0,37.122,6.781,50.268,28.289 c7.221,12.898,10.346,26.037,8.5,39.25c-2.467,17.66-23.688,22.955-33.925,15.966c-9.538-6.513-10.624-17.267-5.995-23.447 c4.633-6.187,13.625-7.164,21.256,1.306c2.453-3.257-3.093-10.773-7.086-12.072c-8.78-2.861-15.844-0.369-22.018,8.5 c-5.391,7.742-5.008,23.877,9.65,33.563c15.104,9.979,54.218,6.937,59.806-25.435c2.629-15.227,1.28-37.223-7.939-58.332 c8.115-4.996,16.014-7.588,21.771-7.588c36.559,0,40.584,62.14,14.25,81.355c39.27-21.668,65.873-63.473,65.873-111.495 C287.266,111.855,260.562,69.982,221.17,48.349z"/>
 
@@ -56,20 +82,19 @@ global $hide_nav;
 		        </g>
 			</div>
 			<!-- header -->
-			<header id="hero" data-section="home" role="banner">
+			<header id="hero" role="banner">
 				<section id="home" data-section="home" class="sec-home canvas-wrapper page-ht">
 					<div class="spacer s0 trigger-ctr" id="hero-trigger"></div>
 				    <canvas id="wocky-shape" class="logo-lg foreground"></canvas>
 				    <canvas id="wocky-bg" class="logo-bg foreground"></canvas>
+	                <span class="wocky-logo-ie-only hero-logo"></span>
 					<div class="hero-content">
 				        <h1 class="visuallyhidden"><?php the_title(); ?></h1>
 				        <div>
 				        <?php if (have_posts()): while (have_posts()) : the_post(); ?>
-
 							<?php
 							the_content();
 							?>
-
 						<?php endwhile; ?>
 						<?php endif; ?>
 						</div>
@@ -93,7 +118,7 @@ global $hide_nav;
 		                <div class="menu-logo">
 			                <a class="wocky-brand" href="#home" data-nav-section="home">
 			                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-			                        <image x="0" y="0" width="158" height="40" xlink:href="<?= get_template_directory_uri() ?>/assets/img/cyberwocky-logo-nav.svg"></image>
+			                        <image x="0" y="0" width="100%" height="100%" xlink:href="<?= get_template_directory_uri() ?>/assets/img/cyberwocky-logo-nav.svg"></image>
 			                    </svg>
 			                </a>
 						</div>

@@ -5,9 +5,36 @@
 		height: 80px;
 		top: 0;
 		z-index: 1000;
+		@include _animate( all, 250ms );
+		border-bottom: 1px solid rgba(0,0,0,0);
+		background-color: rgba(245,247,250, 0);
+		// background-color: red;
+		// @include filter-gradient(#131722, "#00131722", vertical); // IE6-9
+		// background-color: rgba(19,23,34,1);
+/* 
+		&:before{
+			content: "";
+			opacity: 0;
+			@include _abs-fill();
+			@include background-image(linear-gradient(top, rgba(19,23,34,1) 50%,rgba(19,23,34,0) 100%));
+			@include _animate( opacity, 250ms );
+		}
+		// body.scroll-top & {
+		body:not(.scrolled) & {
+			// @include background-image(linear-gradient(top, rgba(19,23,34,1) 50%,rgba(19,23,34,0) 100%));
+			// border-bottom: none;
+			&:before{
+				opacity: 1;
+			}
+		}
+ */		
+		body:not(.scrolled) & {
+			background-color: $brand-black;
+		}
 		body.scrolled & {
-			background: $clr-off-white;
-			border-bottom: 1px solid rgba(0,0,0,0.15);
+			background-color: $clr-off-white;
+			// @include background-image(linear-gradient(top, $clr-off-white 50%,$clr-off-white 100%));
+			border-bottom-color: rgba(0,0,0,0.1);
 		}
 	}
 	.nav-tabs-justified > li > a,
@@ -39,6 +66,8 @@
 	@media #{$sm-min} {
 		display: flex;
 		justify-content: space-between;
+		border-bottom: 1px solid rgba(255,255,255,0.15);
+		height: 100%;
 		nav {
 			order: 1;
 			a {
@@ -74,12 +103,15 @@
 		.menu-logo {
 			order: 0;
 			width: 0px;
-			padding-top: 26px;
+			// padding-top: 26px;
 			display: inline-block;
 			margin-left: 20px;
 			margin-right: 20px;
 			transform: translateY(-100px);
 			@include _animate();
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			body.scrolled & {
 				width: 220px;
 				transform: translateY(0);
@@ -177,14 +209,17 @@
 
 .wocky-brand {
  	svg {
- 		height: 40px;
+ 		height: 15px;
  		width: 160px;
 		@media #{$sm-min} {
- 			height: 50px;
+ 			height: 21px;
 	 		width: 220px;
+			margin-top: 6px;
 		}
 		@media #{$md-min} {
+ 			height: 24px;
 	 		width: 260px;
+			margin-top: 8px;
 		}
 		image {
 			width: 100%;
