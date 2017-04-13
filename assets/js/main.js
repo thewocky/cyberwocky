@@ -1821,98 +1821,94 @@ var drawForeground = function( el ) {
 
   setCoords( ptLeft, ptTop, targetSize, svgSize );
 
-// 1: trace & fill outer svg path follow 
-  ctxFg.fillStyle = fgInnerColor;
-  ctxGlow.fillStyle = fgInnerColor;
-  var svgPath = document.getElementById( 'logo-outer-path' ).getAttribute( 'd' );
-  shapePath = new Path2D( svgPath );
+// use regular svg in IE
 
-  ctxFg.translate( ctrOffset.x, ctrOffset.y  );
-  ctxFg.scale( targetSizeRatio, targetSizeRatio );
-  ctxFg.closePath();
-  // add outer glow
-  ctxFg.fill( shapePath );
-  ctxFg.restore();
+if( ! browserIsIE ) {
 
-  ctxGlow.translate( ctrOffset.x, ctrOffset.y  );
-  ctxGlow.scale( targetSizeRatio, targetSizeRatio );
-  ctxGlow.closePath();
-  ctxGlow.shadowBlur = 60;
-  ctxGlow.shadowColor = fgShadowColor;
-  ctxGlow.fill( shapePath );
-  ctxGlow.restore();
+  // 1: trace & fill outer svg path follow 
+    ctxFg.fillStyle = fgInnerColor;
+    ctxGlow.fillStyle = fgInnerColor;
+    var svgPath = document.getElementById( 'logo-outer-path' ).getAttribute( 'd' );
+    shapePath = new Path2D( svgPath );
 
-  // 2: knock out next set of paths for inner text
-  ctxFg.globalCompositeOperation = "destination-out";
-  var svgLetters = document.getElementsByClassName("logo-path-outer"),
-    svgRects = document.getElementsByClassName("logo-rect-outer");
-  var i, svgLen = svgLetters.length;
-  for (i = 0; i < svgLen; i++) {
-      var ltrPath = svgLetters[i].getAttribute( 'd' );
-      var ltrPath2d = new Path2D( ltrPath );
-      ctxFg.fill( ltrPath2d );
+    ctxFg.translate( ctrOffset.x, ctrOffset.y  );
+    ctxFg.scale( targetSizeRatio, targetSizeRatio );
+    ctxFg.closePath();
+    // add outer glow
+    ctxFg.fill( shapePath );
+    ctxFg.restore();
+
+    ctxGlow.translate( ctrOffset.x, ctrOffset.y  );
+    ctxGlow.scale( targetSizeRatio, targetSizeRatio );
+    ctxGlow.closePath();
+    ctxGlow.shadowBlur = 60;
+    ctxGlow.shadowColor = fgShadowColor;
+    ctxGlow.fill( shapePath );
+    ctxGlow.restore();
+
+    // 2: knock out next set of paths for inner text
+    ctxFg.globalCompositeOperation = "destination-out";
+    var svgLetters = document.getElementsByClassName("logo-path-outer"),
+      svgRects = document.getElementsByClassName("logo-rect-outer");
+    var i, svgLen = svgLetters.length;
+    for (i = 0; i < svgLen; i++) {
+        var ltrPath = svgLetters[i].getAttribute( 'd' );
+        var ltrPath2d = new Path2D( ltrPath );
+        ctxFg.fill( ltrPath2d );
+    }
+    svgLen = svgRects.length;
+
+    for (i = 0; i < svgLen; i++) {
+        ctxFg.fillRect( svgRects[i].getAttribute( 'x' ),
+          svgRects[i].getAttribute( 'y' ),
+          svgRects[i].getAttribute( 'width' ),
+          svgRects[i].getAttribute( 'height' ) );
+    }
+
+    // 3: add clr & inner glow for logo text
+    ctxGlow.globalCompositeOperation = ("source-over");
+    ctxGlow.fillStyle = innerTextColor;
+    ctxGlow.strokeStyle = innerTextShadowColor;
+
+    // save, .beginPath, lots of path commands (no strokes/fills), .clip, stroke/fill, .restore
+    ctxGlow.lineWidth = 1;
+    ctxGlow.filter = 'blur(1px)';
+    svgLen = svgLetters.length;
+    for (i = 0; i < svgLen; i++) {
+        var ltrPath = svgLetters[i].getAttribute( 'd' );
+        var ltrPath2d = new Path2D( ltrPath );
+        // ctxGlow.fill( ltrPath2d );
+        ctxGlow.save();
+        ctxGlow.clip( ltrPath2d );
+        ctxGlow.fill( ltrPath2d );
+        ctxGlow.stroke( ltrPath2d );
+        ctxGlow.restore();
+    }
+
+    var svgRects = document.getElementsByClassName("logo-rect-outer");
+    svgLen = svgRects.length;
+    for (i = 0; i < svgLen; i++) {
+        // var ltrPath = svgRects[i].getAttribute( 'd' );
+        // var ltrPath2d = new Path2D( ltrPath );
+        ctxGlow.save();
+        ctxGlow.rect( svgRects[i].getAttribute( 'x' ),
+          svgRects[i].getAttribute( 'y' ),
+          svgRects[i].getAttribute( 'width' ),
+          svgRects[i].getAttribute( 'height' ) );
+        ctxGlow.clip();
+        ctxGlow.fillRect( svgRects[i].getAttribute( 'x' ),
+          svgRects[i].getAttribute( 'y' ),
+          svgRects[i].getAttribute( 'width' ),
+          svgRects[i].getAttribute( 'height' ) );
+        ctxGlow.strokeRect( svgRects[i].getAttribute( 'x' ),
+          svgRects[i].getAttribute( 'y' ),
+          svgRects[i].getAttribute( 'width' ),
+          svgRects[i].getAttribute( 'height' ) );
+        ctxGlow.restore();
+    }
+
   }
-  svgLen = svgRects.length;
 
-  for (i = 0; i < svgLen; i++) {
-      ctxFg.fillRect( svgRects[i].getAttribute( 'x' ),
-        svgRects[i].getAttribute( 'y' ),
-        svgRects[i].getAttribute( 'width' ),
-        svgRects[i].getAttribute( 'height' ) );
-  }
-
-  // 3: add clr & inner glow for logo text
-  ctxGlow.globalCompositeOperation = ("source-over");
-  ctxGlow.fillStyle = innerTextColor;
-  ctxGlow.strokeStyle = innerTextShadowColor;
-
-  // save, .beginPath, lots of path commands (no strokes/fills), .clip, stroke/fill, .restore
-  ctxGlow.lineWidth = 1;
-  ctxGlow.filter = 'blur(1px)';
-  svgLen = svgLetters.length;
-  for (i = 0; i < svgLen; i++) {
-      var ltrPath = svgLetters[i].getAttribute( 'd' );
-      var ltrPath2d = new Path2D( ltrPath );
-      // ctxGlow.fill( ltrPath2d );
-      ctxGlow.save();
-      ctxGlow.clip( ltrPath2d );
-      ctxGlow.fill( ltrPath2d );
-      ctxGlow.stroke( ltrPath2d );
-      ctxGlow.restore();
-  }
-
-  var svgRects = document.getElementsByClassName("logo-rect-outer");
-  svgLen = svgRects.length;
-  for (i = 0; i < svgLen; i++) {
-      // var ltrPath = svgRects[i].getAttribute( 'd' );
-      // var ltrPath2d = new Path2D( ltrPath );
-      ctxGlow.save();
-      ctxGlow.rect( svgRects[i].getAttribute( 'x' ),
-        svgRects[i].getAttribute( 'y' ),
-        svgRects[i].getAttribute( 'width' ),
-        svgRects[i].getAttribute( 'height' ) );
-      ctxGlow.clip();
-      ctxGlow.fillRect( svgRects[i].getAttribute( 'x' ),
-        svgRects[i].getAttribute( 'y' ),
-        svgRects[i].getAttribute( 'width' ),
-        svgRects[i].getAttribute( 'height' ) );
-      ctxGlow.strokeRect( svgRects[i].getAttribute( 'x' ),
-        svgRects[i].getAttribute( 'y' ),
-        svgRects[i].getAttribute( 'width' ),
-        svgRects[i].getAttribute( 'height' ) );
-      ctxGlow.restore();
-  }
-/*
-  ctxFg.strokeStyle = 'white';
-  ctxFg.lineWidth = 1;
-  ctxFg.filter = null;
-  ctxFg.save();
-  ctxFg.fillRect( ctrTextBounds.x,
-    ctrTextBounds.y,
-    ctrTextBounds.width,
-    ctrTextBounds.height );
-  ctxFg.restore();
-*/
 };
 
 window.onload = function() {
@@ -1931,7 +1927,6 @@ window.addEventListener('resize', onWindowResize, false);
 ;(function () {
 	'use strict';
 
-	var $ = jQuery;
 	// iPad and iPod detection	
 	var isiPad = function(){
 		return (navigator.platform.indexOf("iPad") != -1);
