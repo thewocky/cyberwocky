@@ -9,8 +9,13 @@ global $hide_nav;
 		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' : '; } ?><?php bloginfo('name'); ?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
-		<link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
-		<link href="<?php echo get_template_directory_uri(); ?>/img/icons/touch.png" rel="apple-touch-icon-precomposed">
+
+		<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon/favicon-180x180.png">
+		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/assets/img/favicon/favicon-270x270.png">
+		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon/favicon-192x192.png" sizes="192x192">
+		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon/favicon-32x32.png" sizes="32x32">
+		<link href="<?php echo get_template_directory_uri(); ?>/assets/img/favicon/favicon.ico" rel="shortcut icon">
+
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?>" href="<?php bloginfo('rss2_url'); ?>" />
 		<link href="https://fonts.googleapis.com/css?family=Michroma|Raleway:300,400,700" rel="stylesheet">
 
