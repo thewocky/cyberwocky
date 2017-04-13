@@ -44,6 +44,7 @@ function detectIE() {
   return false;
 }
 var browserIsIE = detectIE();
+var browserIsIE = true;
 var domHtml = document.getElementsByTagName("html"); 
 if( browserIsIE ) {
 	domHtml[0].classList.add('is-ie');
@@ -58,9 +59,6 @@ if( browserIsIE ) {
 		<div id="wocky-wrap">
 			<div class="bg-page canvas-wrapper bg-brand-dk">
 			    <canvas id="particle-field" class="background"></canvas>
-
-                <span class="wocky-logo-ie-only hero-logo"></span>
-
 			    <svg version="1.1" baseProfile="tiny" id="wocky-svg" class="wocky-path hero-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
 			     x="0px" y="0px" width="100%" height="100%" viewBox="0 0 320 320" xml:space="preserve">
 
@@ -85,11 +83,12 @@ if( browserIsIE ) {
 		        </g>
 			</div>
 			<!-- header -->
-			<header id="hero" data-section="home" role="banner">
+			<header id="hero" role="banner">
 				<section id="home" data-section="home" class="sec-home canvas-wrapper page-ht">
 					<div class="spacer s0 trigger-ctr" id="hero-trigger"></div>
 				    <canvas id="wocky-shape" class="logo-lg foreground"></canvas>
 				    <canvas id="wocky-bg" class="logo-bg foreground"></canvas>
+	                <span class="wocky-logo-ie-only hero-logo"></span>
 					<div class="hero-content">
 				        <h1 class="visuallyhidden"><?php the_title(); ?></h1>
 				        <div>

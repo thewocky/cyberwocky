@@ -2053,8 +2053,7 @@ window.addEventListener('resize', onWindowResize, false);
 					$('body').removeClass('hide-mobile-nav');
 				}, 500);
 			
-			}
-			else if( direction === 'up' ){
+			} else if( direction === 'up' ){
 				$('body').removeClass('scrolled');
 			}			
 		}, { offset: '-90%' } );
