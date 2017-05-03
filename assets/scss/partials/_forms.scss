@@ -14,31 +14,34 @@
 }
 
 .gform_wrapper {
-		.gform_footer {
-			padding-left: 15px !important;
-			padding-right: 15px !important;
-			text-align: right;
-			input[type="submit"] {
-				letter-spacing: 1px;
-				margin-bottom: 12px;
-				@include _animate();
-				padding: 10px 16px;
-				margin-right: 0 !important;
-				border: none !important;
-				border-radius: 0;
-				background-color: $clr-off-white;
-				color: $brand-secondary;
-				&:hover, &:focus, &:active {
-					// box-shadow: none!important;
-					outline: none!important;
-					// background: rgba(110,112,115,0.05)!important;
-					background-color: white;
-					color: $clr-grey-dk;
-					@include card(1);
-				}
+	.gform_footer {
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+		text-align: right;
+		input[type="submit"] {
+			letter-spacing: 1px;
+			margin-bottom: 12px;
+			@include _animate();
+			padding: 10px 16px;
+			margin-right: 0 !important;
+			border: none !important;
+			border-radius: 0;
+			background-color: $clr-off-white;
+			color: $brand-secondary;
+			&:hover, &:focus, &:active {
+				// box-shadow: none!important;
+				outline: none!important;
+				// background: rgba(110,112,115,0.05)!important;
+				background-color: white;
+				color: $clr-grey-dk;
+				@include card(1);
 			}
-
 		}
+	}
+	.gform_heading {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
 	.gform_body .top_label div.ginput_container {
 		margin-top: 0;
 	}
@@ -92,14 +95,13 @@
 				padding: 14px 14px 6px !important; 
 				border: none;
 				color: $brand-black;
+				border-radius: 0 !important;
 			}
 	        &.not-empty {
 		        label {
 		            top: 6px;
 		            font-size: 60%;
 		            opacity: 0.6;
-		            @media #{$sm-min} {
-		            }
 		        }
 	        }
 			@media #{$sm-min} {
@@ -114,8 +116,36 @@
 
 		}
 	}
+	&.gform_validation_error {
+		.validation_wrapper {
+			margin: 0 3px 0 15px;
+			width: auto;
+			background-color: $clr-mid-white;
+			padding: 15px;
+			border: 1px solid $clr-error;
+			color: $clr-error;
+		}
+		ul.gform_fields {
+			li.gfield.gfield_error {
+				background-color: transparent;
+				margin-bottom: 6px !important;
+				border-top: none;
+				border-bottom: none;
+				padding-bottom: 0;
+				padding-top: 0;
+				box-sizing: border-box;
+				.gfield_description.validation_message {
+					color: $clr-error;
+				}
+			}	
+		} 
+	}
 }
 .gform_confirmation_wrapper {
 	padding-left: 15px;
 	padding-right: 15px;
+	opacity: 1 !important;
+	&.animate-box {
+
+	}
 }

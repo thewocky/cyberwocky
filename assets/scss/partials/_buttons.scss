@@ -73,3 +73,14 @@
 	padding-bottom: 7px;
 }
 
+.btnset {
+	@media #{$xs-max} {
+		br:nth-child(n + 2) {
+			display: none;
+		}
+		.link {
+			display: inline-block;
+			padding: 0 12px;
+		}
+	}
+}

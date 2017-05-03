@@ -28,7 +28,9 @@ a {
 	}
 }
 p {
-	margin-bottom: 1.5em;
+	@media #{$sm-min} {
+		margin-bottom: 1.5em;
+	}
 }
 
 h1, h2, h3 {
@@ -292,7 +294,7 @@ a > img {
 	}
 }
 section {
-	padding-top: 60px;
+	padding-top: 20px;
 	padding-bottom: 40px;
 	@media #{$sm-min} {
 		padding-top: 100px;

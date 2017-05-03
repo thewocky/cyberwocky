@@ -2193,7 +2193,7 @@ window.addEventListener('resize', onWindowResize, false);
 	// animate-box
 	var contentWayPoint = function() {
 		$('.animate-box').waypoint( function( direction ) {
-			// log( 'waypoint');
+			// log( '.animate-box waypoint');
 			if( direction === 'down' && !$(this).hasClass('animated') ) {
 				$(this.element).addClass('fadeInUp animated');
 			}
@@ -2281,7 +2281,6 @@ window.addEventListener('resize', onWindowResize, false);
 		aboutWayPoint();
 		contentWayPoint();
 		navigationSection();
-
 		// init smController
 		var smController = new ScrollMagic.Controller();
 	    // $("#gform_fields_1 input").each(e).on("input", e);

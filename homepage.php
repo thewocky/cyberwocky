@@ -24,7 +24,7 @@ get_header();
 					<div class="sm-offset-golden-third sm-left">
 						<p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance to form as well as function.</p>
 						<p>Popular culture suggests that creative types are right-brain dominant, while scientists and logic-minded folks are left-brainers. I contend that both halves of the brain work better when they work together.</p>
-						<p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside da&nbsp;Vinci and Ben Franklin.</p></div>
+						<p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside Leonardo da&nbsp;Vinci, Ben Franklin, and Brian&nbsp;May.</p></div>
 				</div>
 			</div>
 
@@ -50,11 +50,32 @@ if ( $work_query->have_posts() ) :
 		
 ?>
 					<div class="item row">
-						<div class="col-sm-6 item-thumb">
-			    			<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'project-thumb' ) ); ?>
+						<div class="col-md-8 flex-md item-thumb">
+			    			<h4 class="visible-xs-block"><?php the_title();?></h4>
+							<?php if ( has_post_thumbnail() ) : 
+
+								$id = get_post_thumbnail_id();
+								$src_arr = wp_get_attachment_image_src( $id, 'full' );
+								$src = $src_arr[0];
+								$srcset = wp_get_attachment_image_srcset( $id, 'full' );
+								$sizes = wp_get_attachment_image_sizes( $id, 'full' );
+								$alt = get_post_meta( $id, '_wp_attachment_image_alt', true);
+							?>
+
+							  	<img src="<?php echo esc_attr( $src );?>"
+							  		srcset="<?php echo esc_attr( $srcset ); ?>"
+									sizes=""<?php echo esc_attr( $sizes );?>""
+									alt="<?php echo esc_attr( $alt );?>" />
+
+							<?php
+							endif;
+
+			    			// echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'project-thumb' ) );
+
+			    			?>
 			    		</div>
-			    		<div class="col-sm-6 flex item-content">
-			    			<h4><?php the_title();?></h4>
+			    		<div class="col-md-4 flex-md item-content">
+			    			<h4 class="hidden-xs"><?php the_title();?></h4>
 			    			<?php the_content();?>
 			    		</div>
 			    	</div>
@@ -89,7 +110,8 @@ endif;
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-					<p><strong>My mission is to help my clients succeed.</strong> Web design is my game, but your business is so much more. Whether you're a fledgling startup looking to establish a brand or a multinational behemoth launching a new product, I can support your business needs across the board.</p>
+		    		<h3>The wocky works for you.</h3>
+					<p><strong>My mission is simple: to help my clients succeed.</strong> Web design is my game, but your business is so much more. Whether you're a fledgling startup looking to establish a brand or a multinational behemoth launching a new product, I can support your business needs across the board.</p>
 					<ul>
 						<li>Front-end Web Development</li>
 						<li>Javascript Development</li>

@@ -145,35 +145,87 @@
 	.owl-stage-outer {
 	}
 }
-.owl-item {
-	padding: 12px 20px 24px;
-    @media #{$sm-min} {
-		padding: 20px 60px 20px;
-	}
-	h4 {
-		font-size: 18px;
+.owl-carousel {
+	&:not(.loaded) {
+		@media only screen and (orientation: landscape) and (max-width:767px) {
+			min-height: 100vh;
+		}
+		@media only screen and (orientation: portrait) and (max-width:767px) {
+			min-height: 100vw;
+		}
 	    @media #{$sm-min} {
-			font-size: 20px;
+			min-height: 75vh;
 		}
 	}
-	p {
-		font-size: 88%;
-	}
-	p.details {
-		color: lighten($clr-grey-mid, 15%);
-		font-weight: bold;
-	}
-	p.disclaimer {
-		color: lighten($clr-grey-mid, 15%);
-	}
-	.item {
-		.item-thumb {
-
+	.owl-item {
+		padding: 12px 20px 24px;
+	    @media #{$sm-min} {
+			padding: 20px 60px 20px;
 		}
-		.item-content {
-			padding-top: 14px;
+		h4 {
+			font-size: 18px;
 		    @media #{$sm-min} {
-				padding-top: 48px;
+				font-size: 20px;
+			}
+		}
+		p {
+			font-size: 88%;
+		}
+		p.details {
+			color: lighten($clr-grey-mid, 15%);
+			font-weight: bold;
+		}
+		p.disclaimer {
+			color: lighten($clr-grey-mid, 15%);
+		}
+		.item {
+		    @media #{$xs-max} {
+				text-align: center;
+			}
+			.item-content {
+				padding-top: 14px;
+			}
+			img {
+/* 				
+				image-rendering: -moz-crisp-edges;
+			    image-rendering: -o-crisp-edges;
+			    image-rendering: -webkit-optimize-contrast;
+			    -ms-interpolation-mode: nearest-neighbor;
+ */			    
+			    // https://superuser.com/questions/530317/how-to-prevent-chrome-from-blurring-small-images-when-zoomed-in
+
+			    // image-rendering: optimizeSpeed;             /*                     */
+			    // image-rendering: -moz-crisp-edges;          /* Firefox             */
+			    // image-rendering: -o-crisp-edges;            /* Opera               */
+			    // image-rendering: -webkit-optimize-contrast; /* Chrome (and Safari) */
+			    // image-rendering: optimize-contrast;         /* CSS3 Proposed       */
+			    // -ms-interpolation-mode: nearest-neighbor;   /* IE8+                */
+
+			    @media #{$xs-max} {
+					margin-top: -10%;
+					margin-bottom: -10%;
+				}
+			    @media #{$sm-only} {
+					max-width: 600px;
+					margin: 0 auto;
+				}
+			}
+		    @media #{$md-min} {
+				.flex-md {
+					min-height: 75vh;
+					display: flex;
+					flex-direction: column;
+					align-items: flex-start;
+					justify-content: center;
+				}
+				.item-thumb {
+					img {
+						// align-self: center;
+					}
+				}
+				.item-content {
+					padding-top: 48px;
+				}
 			}
 		}
 	}
