@@ -156,44 +156,48 @@
 					
 					$(this.element).addClass('animated');
 
-
-					TweenMax.to('.sm-golden-third', 0.8, {
-						x: 0,
-						ease: Expo.easeOut
-					});
-					TweenLite.to('.area-1', 0.8, {
-						x: 0,
-						delay:0.2,
-						ease: Expo.easeOut
-					});
-					TweenLite.to('.area-2 h3', 0.8, {
-						x: 0,
-						delay:0.4,
-						ease: Expo.easeOut
-					});
-					TweenLite.to('.area-3 h3', 0.8, {
-						x: 0,
-						delay:0.4,
-						ease: Expo.easeOut
-					});
-					// fromTo(photo, 1.5, {width:0, height:0}, {width:100, height:200});
-					TweenLite.fromTo('.area-3 .offset-badge', 0.8, {
-						rotation:90,
-						scale:1,
-						opacity:0
-					}, {
-						rotation:0,
-						scale:1,
+					TweenLite.to('.content-container', 0.8, {
+						css:{
+							transform:"translateY(0)"
+						},
 						opacity:1,
-						delay:1,
 						ease: Expo.easeOut
 					});
-					TweenLite.to('.area-4', 0.8, {
-						x: 0,
+					TweenLite.to('.offset-badge', 0.8, {
+						rotation:-90,
+						delay:0.8,
+						opacity:1,
+						ease: Expo.easeOut
+					});
+					// log( 'this is it : ' +$('.content-body p').length );
+					TweenLite.to('.align-right', 0.8, {
+						css:{
+							transform:"translateX(0)",
+							opacity:1
+						},
 						delay:0.6,
 						ease: Expo.easeOut
 					});
+					TweenLite.to('.align-left', 0.8, {
+						css:{
+							transform:"translateX(0)",
+							opacity:1
+						},
+						delay:0.6,
+						ease: Expo.easeOut
+					});
+					for( var i=0, len=$('.content-body p').length; i<=len; i++ ) {
+						TweenLite.to('.content-body p:nth-child(' + i + ')', 0.8, {
+							css:{
+								transform:"translateY(0)",
+								opacity:1
+							},
+							delay:1 + i * 0.2,
+							ease: Expo.easeOut
+						});
 					}
+
+				}
 			} , { offset: '60%' } );
 		}
 	};
@@ -370,16 +374,9 @@
 	    	$( this ).on("blur", checkIfEmpty);
 	    });
 
-/*
-		var heroTween = TweenMax.to("#home", 0.5, {
-			alpha: 0.1,
-			yoyo: true
-		});
-		var heroScene = new ScrollMagic.Scene({triggerElement: "#trigger-hero", duration: "100%"})
-			.setTween( heroTween )
-			// .addIndicators() // add indicators (requires plugin)
-			.addTo( smController );
-*/			
+
+// 	   $( '#gform_submit_button_1' ).after( '<img class="gform_ajax_spinner" src="/wp-content/themes/cyberwocky/assets/img/yin-yang.svg" />' );
+
 	});
 
 
