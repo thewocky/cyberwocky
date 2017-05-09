@@ -206,7 +206,7 @@ function wocky_comments($comment, $args, $depth)
 
 add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
 function spinner_url( $image_src, $form ) {
-    return get_template_directory_uri() . '/assets/img/yin-yang.svg';
+    return get_template_directory_uri() . '/assets/img/spinner.png';
 }
 
 

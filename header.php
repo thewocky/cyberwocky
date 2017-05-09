@@ -112,6 +112,7 @@ if( browserIsIE ) {
 						<?php endif; ?>
 						</div>
 					</div>
+	                <span id="preload-icon" class="preloader spinner"></span>
 				</section>
 				<?php
 				if( isset( $hide_nav ) && $hide_nav ):
