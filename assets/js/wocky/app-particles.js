@@ -344,8 +344,11 @@ window.onload = function() {
   drawForeground( fgCanvasElement );
   initParticles();
 
-  updateLogoContour(); 
+  updateLogoContour();
 
+  $( '#preload-icon').fadeOut( 400, function(){
+    $( this ).remove();
+  });
 
 }
 

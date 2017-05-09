@@ -1,0 +1,20 @@
+// Counter
+.preloader {
+	position: absolute;
+	width: 36px;
+	height: 36px;
+	top: 50%;
+	left: 50%;
+	margin-top: -18px;
+	margin-left: -18px;
+	background-size: contain;
+	background-repeat: no-repeat;
+	animation-name: spinner-loop;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+.spinner {
+	background-image: url('../img/spinner.png');
+}
+

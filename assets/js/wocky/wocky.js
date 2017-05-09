@@ -170,7 +170,7 @@
 						ease: Expo.easeOut
 					});
 					// log( 'this is it : ' +$('.content-body p').length );
-					TweenLite.to('.align-right', 0.8, {
+					TweenLite.to('.align-right', 0.4, {
 						css:{
 							transform:"translateX(0)",
 							opacity:1
@@ -178,7 +178,7 @@
 						delay:0.6,
 						ease: Expo.easeOut
 					});
-					TweenLite.to('.align-left', 0.8, {
+					TweenLite.to('.align-left', 0.4, {
 						css:{
 							transform:"translateX(0)",
 							opacity:1
@@ -192,7 +192,7 @@
 								transform:"translateY(0)",
 								opacity:1
 							},
-							delay:1 + i * 0.2,
+							delay:0.7 + i * 0.2,
 							ease: Expo.easeOut
 						});
 					}
@@ -318,14 +318,6 @@
 	};
 
 	
-/*
-    var e = function() {
-        var e = jQuery(this);
-        "hidden" != e.attr("type") && e.toggleClass("not-empty", "" != e.val());
-    };
-    $('input[type="email"]').each(e).on("input", e);
-*/
-
     var addFocusClass = function() {
         var el = $( this ),
         	$parent = el.parent().parent();
@@ -336,7 +328,6 @@
     var checkIfEmpty = function() {
         var el = $( this ),
         	$parent = el.parent().parent();
-        // console.log( el.val() );
         if( "hidden" != el.attr("type")  ) {
         	if( "" != el.val() && ! $parent.hasClass( "not-empty" ) ) {
         		$parent.addClass( "not-empty" );
@@ -359,23 +350,20 @@
 		aboutWayPoint();
 		contentWayPoint();
 		navigationSection();
+
 		// init smController
-		var smController = new ScrollMagic.Controller();
+		// var smController = new ScrollMagic.Controller();
 	    // $("#gform_fields_1 input").each(e).on("input", e);
 
 	    $("#gform_fields_1 textarea").each( function(){
-	    	// $( this ).on("input", checkIfEmpty);
 	    	$( this ).on("focus", addFocusClass);
 	    	$( this ).on("blur", checkIfEmpty);
 	    });
 	    $("#gform_fields_1 input").each( function(){
-	    	// $( this ).on("input", checkIfEmpty);
 	    	$( this ).on("focus", addFocusClass);
 	    	$( this ).on("blur", checkIfEmpty);
 	    });
 
-
-// 	   $( '#gform_submit_button_1' ).after( '<img class="gform_ajax_spinner" src="/wp-content/themes/cyberwocky/assets/img/yin-yang.svg" />' );
 
 	});
 
