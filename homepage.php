@@ -8,7 +8,7 @@ get_header();
 		<section id="about" data-section="about" class="page-ht sec-about">
 			<div class="spacer s0 trigger-20" id="trigger-about"></div>
 
-			<div class="area-fill-min-xx flex content">
+			<div class="flex content">
 				<div class="flex-child area-1 header-container">
 					<div class=""><h4>What is a Cyberwocky, and why do you need&nbsp;one?</h4></div>
 				</div>
