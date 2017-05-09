@@ -200,6 +200,16 @@ function wocky_comments($comment, $args, $depth)
     <?php endif; ?>
 <?php }
 
+
+
+
+
+add_filter( 'gform_ajax_spinner_url', 'spinner_url', 10, 2 );
+function spinner_url( $image_src, $form ) {
+    return get_template_directory_uri() . '/assets/img/yin-yang.svg';
+}
+
+
 /*------------------------------------*\
     Actions + Filters + ShortCodes
 \*------------------------------------*/

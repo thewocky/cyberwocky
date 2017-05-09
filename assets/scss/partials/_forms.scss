@@ -18,6 +18,7 @@
 		padding-left: 15px !important;
 		padding-right: 15px !important;
 		text-align: right;
+		position: relative;
 		input[type="submit"] {
 			letter-spacing: 1px;
 			margin-bottom: 12px;
@@ -26,17 +27,41 @@
 			margin-right: 0 !important;
 			border: none !important;
 			border-radius: 0;
-			background-color: $clr-off-white;
+			background-color: $clr-mid-white;
 			color: $brand-secondary;
 			&:hover, &:focus, &:active {
 				// box-shadow: none!important;
 				outline: none!important;
 				// background: rgba(110,112,115,0.05)!important;
-				background-color: white;
+				background-color: $clr-mid-white;
 				color: $clr-grey-dk;
 				@include card(1);
 			}
 		}
+		.gform_ajax_spinner {
+// 			@include _animate();
+			width: 30px;
+			height: auto;
+			animation-name: spinner-loop;
+			animation-duration: 0.5s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			position: absolute;
+			right: 140px;
+			padding-left: 0;
+			margin-top: -15px;
+			top: 50%;
+		}
+      @media (max-width: 639px) {
+        margin-top: 40px !important;
+        .gform_ajax_spinner {
+		    right: auto;
+		    left: 50%;
+		    top: -30px;
+		    margin-left: -15px;
+		    margin-top: 0;
+        }
+      }
 	}
 	.gform_heading {
 		padding-left: 15px;
@@ -117,7 +142,7 @@
 		}
 	}
 	&.gform_validation_error {
-		.validation_wrapper {
+		.validation_error {
 			margin: 0 3px 0 15px;
 			width: auto;
 			background-color: $clr-mid-white;
@@ -126,6 +151,13 @@
 			color: $clr-error;
 		}
 		ul.gform_fields {
+			li.gfield {
+		        label {
+		            top: 6px;
+		            font-size: 60%;
+		            opacity: 0.6;
+		        }
+			}
 			li.gfield.gfield_error {
 				background-color: transparent;
 				margin-bottom: 6px !important;

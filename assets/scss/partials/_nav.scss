@@ -11,23 +11,6 @@
 		// background-color: red;
 		// @include filter-gradient(#131722, "#00131722", vertical); // IE6-9
 		// background-color: rgba(19,23,34,1);
-/* 
-		&:before{
-			content: "";
-			opacity: 0;
-			@include _abs-fill();
-			@include background-image(linear-gradient(top, rgba(19,23,34,1) 50%,rgba(19,23,34,0) 100%));
-			@include _animate( opacity, 250ms );
-		}
-		// body.scroll-top & {
-		body:not(.scrolled) & {
-			// @include background-image(linear-gradient(top, rgba(19,23,34,1) 50%,rgba(19,23,34,0) 100%));
-			// border-bottom: none;
-			&:before{
-				opacity: 1;
-			}
-		}
- */		
 		body:not(.scrolled) & {
 			background-color: $brand-black;
 		}
@@ -107,14 +90,14 @@
 			display: inline-block;
 			margin-left: 20px;
 			margin-right: 20px;
-			transform: translateY(-100px);
+			transform: translateX(-100vw);
 			@include _animate();
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			body.scrolled & {
 				width: 220px;
-				transform: translateY(0);
+				transform: translateX(0);
 			}
 			body:not(.scrolled) & {
 				

@@ -8,23 +8,24 @@ get_header();
 		<section id="about" data-section="about" class="page-ht sec-about">
 			<div class="spacer s0 trigger-20" id="trigger-about"></div>
 
-			<div class="area-fill area-bg">
-				<div class="sm-golden-third sm-left sm-full-ht sm-off-white animate-bg-clr"></div>
-			</div>
-
-			<div class="area-fill-min flex content">
-				<div class="flex-child area-1">
-					<div class="sm-offset-golden-third sm-left"><h4>What is a Cyberwocky, and why do you need one?</h4></div>
+			<div class="flex content">
+				<div class="flex-child area-1 header-container">
+					<div class=""><h4>What is a Cyberwocky, and why do you need&nbsp;one?</h4></div>
 				</div>
-				<div class="flex-child tagline-container">
-					<div class="sm-golden-third sm-left area-2"><h3 class="text-right">Creator</h3></div>
-					<div class="sm-left area-3"><img class="offset-badge" src="<?= get_template_directory_uri() ?>/assets/img/yin-yang.svg" /><h3>Coder</h3></div>
-				</div>
-				<div class="flex flex-horiz flex-child area-4">
-					<div class="sm-offset-golden-third sm-left">
-						<p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance to form as well as function.</p>
-						<p>Popular culture suggests that creative types are right-brain dominant, while scientists and logic-minded folks are left-brainers. I contend that both halves of the brain work better when they work together.</p>
-						<p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside Leonardo da&nbsp;Vinci, Ben Franklin, and Brian&nbsp;May.</p></div>
+				<div class="flex-child content-container area-2 fluid-container">
+					<div class="container">
+						<div class="row content-header">
+							<div class="area-coder col-xs-5 align-right"><h3 class="text-right">Coder</h3></div>
+							<div class="area-yinyang col-xs-2 align-center"><img class="offset-badge" src="<?= get_template_directory_uri() ?>/assets/img/yin-yang.svg" /></div>
+							<div class="area-creator col-xs-5 align-left"><h3>Creator</h3></div>
+						</div>
+						<div class="row content-body">
+							<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+								<p>Cyberwocky is the alter ego of Jeff Battema: web designer, Javascript nerd, wearer of many hats. I strive to bring elegance to form as well as function.</p>
+								<p>Popular culture suggests that creative types are right-brain dominant, while scientists and logic-minded folks are left-brainers. I contend that both halves of the brain work better when they work together.</p>
+								<p>This site is inspired by mathematician, author, and artist Lewis Carroll, whose multi-pronged genius ranks alongside Leonardo da&nbsp;Vinci, Ben Franklin, and Brian&nbsp;May.</p></div>
+						</div>
+					</div>
 				</div>
 			</div>
 
