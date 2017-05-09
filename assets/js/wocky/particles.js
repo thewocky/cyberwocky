@@ -418,7 +418,8 @@ var Particles = (function(window, document) {
 
       // connect particle to closest segment of shape
       // var svgHitPoint = _.exclude ? findClosestSegment( {x:particle.x, y:particle.y } ) : false;
-      var svgHitPoint = findClosestSegment( {x:particle.x, y:particle.y } );
+      var svgHitPoint = false;
+      // var svgHitPoint = findClosestSegment( {x:particle.x, y:particle.y } );
 
       // console.log( 'svgHitPoint' );
       // console.log( svgHitPoint);

@@ -39,11 +39,12 @@ var bgParticleSpeed = 'undefined' == typeof particleSpeed ? 0.5 : particleSpeed;
 
   var bgParticleSettings = {
     selector: '#particle-field',
-    maxParticles: 200,
+    maxParticles: 400,
     sizeVariations: 0,
     sizeMin: 0,
     speed: bgParticleSpeed, // 1.8
-    color:  '#3d455c', // '#4d5875',  // 6f7ea8
+    // color:  '#3d455c', // '#4d5875',  // 6f7ea8
+    color:  '#98a0b8', // '#4d5875',  // 6f7ea8
     minDistance: 120,
     connectParticles: true,
     responsive: null,
@@ -53,12 +54,12 @@ var bgParticleSpeed = 'undefined' == typeof particleSpeed ? 0.5 : particleSpeed;
     {
        breakpoint: 1000,
        options: {
-         maxParticles: 160
+         maxParticles: 760
        }
      }, {
        breakpoint: 768,
        options: {
-         maxParticles: 100
+         maxParticles: 900
        }
      }, {
        breakpoint: 425,
@@ -166,7 +167,6 @@ var onWindowResize = function() {
       if( prevWinw != winw || prevWinh != winh ) {
         drawForeground( fgCanvasElement );
         updateLogoContour();
-        // initParticles();
       }
     }, 500);
   },
@@ -178,20 +178,7 @@ initParticles = function() {
   // set coords for ctr square
   // adjust padding responsively
 
-  // drawForeground( fgCanvasElement );
-
-  //random particle generator
-/*  
-  bgParticles = new Particles();
-  bgParticles.init( bgParticleSettings );
-*/
-  // bgParticles = new Particles( window, document );
-  // bgParticles.init( bgParticleSettings );
   bgParticles = Particles.init( bgParticleSettings );
-  // fgParticles = Particles.init( fgParticleSettings );
-
-  // fgParticles = new Particles( window, document );
-  // fgParticles.init( fgParticleSettings );
 
 }
 
