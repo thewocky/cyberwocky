@@ -309,7 +309,6 @@ var Particles = (function(window, document) {
    */
   Plugin.prototype._refresh = function() {
     var _ = this;
-
     _._initializeStorage();
     _._update();
   };
@@ -346,6 +345,7 @@ var Particles = (function(window, document) {
   Plugin.prototype._animate = function() {
     var _ = this;
     // log( '_animate: ' + _.options.speed );
+
     if( !_.options.speed ){
       if( n < 3 ){
         n ++;
@@ -375,7 +375,10 @@ var Particles = (function(window, document) {
       particle._draw();
     }
   // log( 'scrollTop: ' + _.bodyElement.scrollTop );
-    _._update();
+    var inviewWork = inView.is(document.querySelector('#work'));
+    if( !inviewWork ) {
+      _._update();
+    }
   };
 
 
@@ -418,14 +421,15 @@ var Particles = (function(window, document) {
 
       // connect particle to closest segment of shape
       // var svgHitPoint = _.exclude ? findClosestSegment( {x:particle.x, y:particle.y } ) : false;
-      var svgHitPoint = findClosestSegment( {x:particle.x, y:particle.y } );
+      // var svgHitPoint = findClosestSegment( {x:particle.x, y:particle.y } );
+      var svgHitPoint = false;
 
       // console.log( 'svgHitPoint' );
       // console.log( svgHitPoint);
 
+/*
       if( svgHitPoint && !particle.inShape) {
       // if( svgHitPoint) {
-//         console.log( 'render ' + svgHitPoint.x + ', ' + svgHitPoint.y );
 
           var segmentPt1 = {
             x:svgHitPoint.targSegment.x1,
@@ -435,9 +439,6 @@ var Particles = (function(window, document) {
             y:svgHitPoint.targSegment.y2
           };
 
-          // console.log( 'calculateDistance' );
-          // console.log( svgHitPoint.targPt );
-          // console.log( segmentPt1 );
           var connectDistance = _._connectParticles(particle, svgHitPoint.targPt, true, false);
           _.options.x = svgHitPoint.targPt.x;
           _.options.y = svgHitPoint.targPt.y;
@@ -462,14 +463,9 @@ var Particles = (function(window, document) {
               segmentPt1.y += Math.sin(connectAngle);
               segmentPt2.x += Math.cos(connectAngle);
               segmentPt2.y += Math.sin(connectAngle);
-/*
-// scrolling screws this up
-            var segmentConnect1 = _._connectParticles(connectionPt1, segmentPt1, true, clr, scrollPos ),
-                segmentConnect2 = _._connectParticles(connectionPt1, segmentPt2, true, clr, scrollPos );
-*/            
           }
       }
-        
+*/        
       if( _.options.connectParticles ) {
         for(var j = i + 1; j < _.storage.length; j++) {
           var particle2 = _.storage[j];

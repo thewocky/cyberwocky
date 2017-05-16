@@ -65,7 +65,7 @@
 		$('#wocky-menu a:not(.wocky-nav-toggle)').click(function(){
 			var section = $(this).data('nav-section'),
 				scrollTarg = $('[data-section="' + section + '"]').offset().top;
-		   //  log( 'Tweenlite: ' + TweenLite );
+		   // log( 'Tweenlite: ' + TweenLite );
 
 		    TweenLite.to(window, 0.5, {
 		    	scrollTo:{

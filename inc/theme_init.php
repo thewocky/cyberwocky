@@ -13,11 +13,10 @@
 /* Get Minification */
 function wocky_minify() {
     if ( strpos( get_site_url(), '.local' ) ) {
-        $min = '.min';
+        $min = '';
         $ver = time();  // never cache on dev
     } else {
-        $min = '';
-        // $min = '.min';
+        $min = '.min';
     }
     return $min;
 }
